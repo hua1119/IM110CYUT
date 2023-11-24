@@ -22,62 +22,64 @@ struct ContentView: View {
         
     
     var body: some View {
-//        NavigationStack {
-//            //已登入
-//            if(self.logIn) {
-//                HomeView().transition(.opacity)//原ForumView_231020
-//            //未登入
-//            } else {
-//                SigninView(textselect: .constant(0)).transition(.opacity)
-//            }
-//        }
-//        .ignoresSafeArea(.all)
-        ZStack
-        {
-            TabView(selection: self.$select)
+        NavigationStack {
+            //            //已登入
+            //            if(self.logIn) {
+            //                HomeView().transition(.opacity)//原ForumView_231020
+            //            //未登入
+            //            } else {
+            //                SigninView(textselect: .constant(0)).transition(.opacity)
+            //            }
+            //        }
+            //        .ignoresSafeArea(.all)
+            ZStack
             {
-                //                  HomeView(select: self.$select)
-
-                PlanView()
-                    .tag(0)
-                    .tabItem
+                TabView(selection: self.$select)
                 {
-                    Label("計畫", systemImage: "calendar")
+                    //                  HomeView(select: self.$select)
+                    
+                    PlanView()
+                        .tag(0)
+                        .tabItem
+                    {
+                        Label("計畫", systemImage: "calendar")
+                    }
+                    //MARK: ForumView
+                    ShopView()
+                        .tag(1)
+                        .tabItem
+                    {
+                        Label("採購", systemImage: "cart")
+                    }
+                    
+                    //                CameraContentView(cameraManagerViewModel: self.cameraManagerViewModel)
+                    ShopView()
+                        .tag(2)
+                        .tabItem
+                    {
+                        Label("烹飪", systemImage: "fork.knife")
+                    }
+                    
+                    DynamicView()
+                        .tag(3)
+                        .tabItem
+                    {
+                        Label("動態", systemImage: "chart.xyaxis.line")
+                    }
+                    
+                    MyView(select: self.$select, information: self.$information)
+                        .tag(4)
+                        .tabItem
+                    {
+                        Label("設置", systemImage: "gearshape.fill")
+                    }
                 }
-                //MARK: ForumView
-                ShopView()
-                    .tag(1)
-                    .tabItem
-                {
-                    Label("採購", systemImage: "cart")
-                }
+                // 點選後的顏色
+                .tint(.orange)
                 
-//                CameraContentView(cameraManagerViewModel: self.cameraManagerViewModel)
-                ShopView()
-                    .tag(2)
-                    .tabItem
-                {
-                    Label("烹飪", systemImage: "fork.knife")
-                }
-                
-                DynamicView()
-                    .tag(3)
-                    .tabItem
-                {
-                    Label("動態", systemImage: "chart.xyaxis.line")
-                }
-                
-                MyView(select: self.$select, information: self.$information)
-                    .tag(4)
-                    .tabItem
-                {
-                    Label("設置", systemImage: "gearshape.fill")
-                }
             }
-            // 點選後的顏色
-            .tint(.orange)
-            
         }
+        .ignoresSafeArea(.all)
     }
 }
 struct ContentView_Previews: PreviewProvider
