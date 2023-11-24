@@ -91,7 +91,7 @@ struct HypertensionView: View
                             .chartForegroundStyleScale([
                                 "血壓值": .orange
                             ])
-                            .frame(width: 350, height: 270)
+                            .frame(width: 350, height: 150)
                             .onAppear
                             {
                                 if scrollToBottom

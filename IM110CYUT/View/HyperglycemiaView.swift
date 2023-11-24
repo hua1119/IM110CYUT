@@ -95,7 +95,7 @@ struct HyperglycemiaView: View
                             .chartForegroundStyleScale([
                                 "血糖值": .orange
                             ])
-                            .frame(width: 350, height: 270)
+                            .frame(width: 350, height: 150)
                             .onAppear
                             {
                                 if scrollToBottom

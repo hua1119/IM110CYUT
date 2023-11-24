@@ -1,42 +1,63 @@
 import SwiftUI
 
-struct PlanView: View
-{
-    // 保存所有七天的計畫
-    @State private var plans: [String: [String]] =
-    {
+struct PlanView: View {
+    @State private var plans: [String: [String]] = {
         var initialPlans: [String: [String]] = [:]
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd"
-
-        for i in 0..<7
-        {
-            if let date = Calendar.current.date(byAdding: .day, value: i, to: Date())
-            {
+        
+        for i in 0..<7 {
+            if let date = Calendar.current.date(byAdding: .day, value: i, to: Date()) {
                 let formattedDate = dateFormatter.string(from: date)
                 initialPlans[formattedDate] = []
             }
         }
         return initialPlans
     }()
+    
+    struct EditPlanView: View {
+        var day: String
+        var planIndex: Int
+        @Binding var plans: [String: [String]]
 
-    var body: some View
-    {
-        NavigationStack
-        {
-            List
-            {
-                ForEach(Array(plans.keys.sorted(by: <)), id: \.self)
-                { day in
+        @State private var editedPlan: String
+
+        @Environment(\.presentationMode) var presentationMode
+
+        init(day: String, planIndex: Int, plans: Binding<[String: [String]]>) {
+            self.day = day
+            self.planIndex = planIndex
+            self._plans = plans
+            self._editedPlan = State(initialValue: plans.wrappedValue[day]?[planIndex] ?? "")
+        }
+
+        var body: some View {
+            VStack {
+                Text("Edit Plan for \(day)")
+                    .font(.title)
+
+                TextField("Enter Plan", text: $editedPlan)
+
+                Button("Save") {
+                    plans[day]?[planIndex] = editedPlan
+                    presentationMode.wrappedValue.dismiss() // 关闭当前视图
+                }
+                .padding()
+            }
+            .padding()
+        }
+    }
+
+    var body: some View {
+        NavigationView {
+            List {
+                ForEach(Array(plans.keys.sorted(by: <)), id: \.self) { day in
                     Section(header:
-                        HStack
-                            {
+                        HStack {
                             Text(day).font(.title)
                             Spacer()
-                            Button(action:
-                                    {
-                                // 新增計畫
-                                plans[day]?.append("New Plan")
+                            Button(action: {
+                                plans[day]?.append("新計畫")
                             }) {
                                 Image(systemName: "plus.circle")
                                     .imageScale(.large)
@@ -44,64 +65,27 @@ struct PlanView: View
                             }
                         }
                     ) {
-                        ForEach(plans[day]!.sorted(), id: \.self)
-                        { plan in
-                            NavigationLink(destination: EditPlanView(day: day, plan: plan, plans: $plans)) {
-                                Text(plan).font(.headline)
+                        if let dayPlans = plans[day] {
+                            ForEach(dayPlans.indices, id: \.self) { index in
+                                let plan = dayPlans[index]
+                                NavigationLink(destination: EditPlanView(day: day, planIndex: index, plans: $plans)) {
+                                    Text(plan).font(.headline)
+                                }
                             }
-                        }
-                        .onDelete
-                        { indices in
-                            plans[day]?.remove(atOffsets: indices)
-                        }
-                        .onMove
-                        { indices, newOffset in
-                            plans[day]?.move(fromOffsets: indices, toOffset: newOffset)
+                            .onDelete { indices in
+                                plans[day]?.remove(atOffsets: indices)
+                            }
                         }
                     }
                 }
             }
-            .navigationBarTitle("Meal Plans")
-            .navigationBarItems(trailing:
-                EditButton()
-            )
+            .navigationBarTitle("週計畫")
         }
     }
 }
 
-struct EditPlanView: View
-{
-    var day: String
-    @State var plan: String  // 使用 @State 來追蹤 TextField 的值
-    @Binding var plans: [String: [String]]
-
-    var body: some View
-    {
-        VStack
-        {
-            Text("Edit Plan for \(day)")
-                .font(.title)
-
-            TextField("Enter Plan", text: $plan)
-
-            Button("Save")
-            {
-                // 更新計畫
-                if let index = plans[day]?.firstIndex(of: plan)
-                {
-                    plans[day]?[index] = plan
-                }
-            }
-            .padding()
-        }
-        .padding()
-    }
-}
-
-struct PlavView_Previews: PreviewProvider
-{
-    static var previews: some View
-    {
+struct PlanView_Previews: PreviewProvider {
+    static var previews: some View {
         PlanView()
     }
 }
