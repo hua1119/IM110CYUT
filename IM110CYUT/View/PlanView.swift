@@ -33,14 +33,14 @@ struct PlanView: View {
 
         var body: some View {
             VStack {
-                Text("Edit Plan for \(day)")
+                Text("編輯 \(day) 的計畫")
                     .font(.title)
 
-                TextField("Enter Plan", text: $editedPlan)
+                TextField("輸入計畫", text: $editedPlan)
 
-                Button("Save") {
+                Button("儲存") {
                     plans[day]?[planIndex] = editedPlan
-                    presentationMode.wrappedValue.dismiss() // 关闭当前视图
+                    presentationMode.wrappedValue.dismiss() // 關閉當前視圖
                 }
                 .padding()
             }
@@ -55,6 +55,7 @@ struct PlanView: View {
                     Section(header:
                         HStack {
                             Text(day).font(.title)
+                            Text(getDayLabelText(for: day)) // 顯示 "第一天" 到 "第七天" 的文本
                             Spacer()
                             Button(action: {
                                 plans[day]?.append("新計畫")
@@ -81,6 +82,15 @@ struct PlanView: View {
             }
             .navigationBarTitle("週計畫")
         }
+    }
+    
+    // 根據日期獲取 "第一天" 到 "第七天" 的文本
+    private func getDayLabelText(for date: String) -> String {
+        guard let index = Array(plans.keys.sorted(by: <)).firstIndex(of: date) else {
+            return ""
+        }
+        let dayNumber = (index % 7) + 1
+        return "第\(dayNumber)天"
     }
 }
 

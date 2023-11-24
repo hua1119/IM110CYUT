@@ -53,7 +53,7 @@ struct DynamicView: View
                 Spacer()
                 Group
                 {
-                    recordButton(.hypertension, title: "BMI")
+                    recordButton(.BMI, title: "BMI")
                     recordButton(.hypertension, title: "血壓")
                     recordButton(.hyperglycemia, title: "血糖")
                     recordButton(.hyperlipidemia, title: "血脂")
@@ -71,21 +71,21 @@ struct DynamicView: View
 
     }
     @ViewBuilder
-    func displaySelectedRecordView() -> some View 
+    func displaySelectedRecordView() -> some View
     {
-        switch selectedRecord 
+        switch selectedRecord
         {
         case .BMI:
-            BMIView()
+            BMIView().animation(nil)
         case .hypertension:
-            HypertensionView()
+            HypertensionView().animation(nil)
         case .hyperglycemia:
-            HyperglycemiaView()
+            HyperglycemiaView().animation(nil)
         case .hyperlipidemia:
-            HyperlipidemiaView()
-        
+            HyperlipidemiaView().animation(nil)
         }
     }
+
 }
 // Preview
 struct DynamicView_Previews: PreviewProvider 
