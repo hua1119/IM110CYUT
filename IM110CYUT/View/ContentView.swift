@@ -42,14 +42,14 @@ struct ContentView: View {
                     .tag(0)
                     .tabItem
                 {
-                    Label("計畫", systemImage: "house.fill")
+                    Label("計畫", systemImage: "calendar")
                 }
                 //MARK: ForumView
                 ShopView()
                     .tag(1)
                     .tabItem
                 {
-                    Label("採購", systemImage: "globe")
+                    Label("採購", systemImage: "cart")
                 }
                 
 //                CameraContentView(cameraManagerViewModel: self.cameraManagerViewModel)
@@ -57,7 +57,7 @@ struct ContentView: View {
                     .tag(2)
                     .tabItem
                 {
-                    Label("烹飪", systemImage: "camera")
+                    Label("烹飪", systemImage: "fork.knife")
                 }
                 
                 DynamicView()
