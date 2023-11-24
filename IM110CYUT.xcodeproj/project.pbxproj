@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		048D11A82B10745800F57403 /* PlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048D11A72B10745800F57403 /* PlanView.swift */; };
+		048D11AA2B10748D00F57403 /* ShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048D11A92B10748D00F57403 /* ShopView.swift */; };
 		04C3D8CC2B1057ED001C28D9 /* IM110CYUTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C3D8CB2B1057ED001C28D9 /* IM110CYUTApp.swift */; };
 		04C3D8CE2B1057ED001C28D9 /* CcontentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C3D8CD2B1057ED001C28D9 /* CcontentView.swift */; };
 		04C3D8D02B1057EE001C28D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04C3D8CF2B1057EE001C28D9 /* Assets.xcassets */; };
@@ -56,6 +58,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		048D11A72B10745800F57403 /* PlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanView.swift; sourceTree = "<group>"; };
+		048D11A92B10748D00F57403 /* ShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopView.swift; sourceTree = "<group>"; };
 		04C3D8C82B1057ED001C28D9 /* IM110CYUT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IM110CYUT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04C3D8CB2B1057ED001C28D9 /* IM110CYUTApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IM110CYUTApp.swift; sourceTree = "<group>"; };
 		04C3D8CD2B1057ED001C28D9 /* CcontentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CcontentView.swift; sourceTree = "<group>"; };
@@ -215,7 +219,9 @@
 				04DEF6E72B105CB400FDDA2C /* HyperlipidemiaView.swift */,
 				04DEF6E92B105CB900FDDA2C /* MyView.swift */,
 				04DEF6EB2B105CBC00FDDA2C /* MenuView.swift */,
+				048D11A72B10745800F57403 /* PlanView.swift */,
 				04DEF6ED2B105CC600FDDA2C /* SigninView.swift */,
+				048D11A92B10748D00F57403 /* ShopView.swift */,
 				04DEF6F12B105E9300FDDA2C /* SingupView.swift */,
 				04DEF6F32B105EAB00FDDA2C /* SpinnerView.swift */,
 			);
@@ -329,6 +335,7 @@
 				04DEF6D32B105C1800FDDA2C /* Dynamic.swift in Sources */,
 				04DEF6C42B105C0D00FDDA2C /* ImagePicker.swift in Sources */,
 				04DEF6BD2B105BFF00FDDA2C /* View.swift in Sources */,
+				048D11A82B10745800F57403 /* PlanView.swift in Sources */,
 				04DEF6F92B105EAF00FDDA2C /* MemberButton.swift in Sources */,
 				04DEF6F42B105EAB00FDDA2C /* SpinnerView.swift in Sources */,
 				04DEF6E02B105C8D00FDDA2C /* DynamicView.swift in Sources */,
@@ -340,6 +347,7 @@
 				04DEF6D42B105C1800FDDA2C /* User.swift in Sources */,
 				04DEF6CF2B105C1800FDDA2C /* StoRage.swift in Sources */,
 				04C3D8D82B1057EE001C28D9 /* IM110CYUT.xcdatamodeld in Sources */,
+				048D11AA2B10748D00F57403 /* ShopView.swift in Sources */,
 				04DEF6D62B105C1800FDDA2C /* RealTime.swift in Sources */,
 				04DEF6FB2B105EAF00FDDA2C /* InformationLabel.swift in Sources */,
 				04DEF6D02B105C1800FDDA2C /* FireStore.swift in Sources */,

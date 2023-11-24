@@ -38,25 +38,26 @@ struct ContentView: View {
             {
                 //                  HomeView(select: self.$select)
 
-                DyenamicView()
+                PlanView()
                     .tag(0)
                     .tabItem
                 {
-                    Label("主頁", systemImage: "house.fill")
+                    Label("計畫", systemImage: "house.fill")
                 }
                 //MARK: ForumView
-                DynamicView()
+                ShopView()
                     .tag(1)
                     .tabItem
                 {
-                    Label("論壇", systemImage: "globe")
+                    Label("採購", systemImage: "globe")
                 }
                 
 //                CameraContentView(cameraManagerViewModel: self.cameraManagerViewModel)
+                ShopView()
                     .tag(2)
                     .tabItem
                 {
-                    Label("AI", systemImage: "camera")
+                    Label("烹飪", systemImage: "camera")
                 }
                 
                 DynamicView()
