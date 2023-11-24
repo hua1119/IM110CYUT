@@ -38,7 +38,7 @@ struct ContentView: View {
             {
                 //                  HomeView(select: self.$select)
 
-                DynamicView()
+                DyenamicView()
                     .tag(0)
                     .tabItem
                 {
