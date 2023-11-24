@@ -1,11 +1,13 @@
 //
-//  GP110App.swift
+//  IM110CYUTApp.swift
 //
 //
 //
 //
 
 import SwiftUI
+import Firebase
+import FirebaseAuth
 import FirebaseCore
 
 //MARK: Firebase
@@ -15,6 +17,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
     ) -> Bool {
+        let pf=AppCheckDebugProviderFactory()
+        AppCheck.setAppCheckProviderFactory(pf)
         FirebaseApp.configure()
         return true
     }
@@ -37,16 +41,16 @@ struct IM110CYUTApp: App {
 
     var body: some Scene {
         WindowGroup {
-//            LoginView()
+            SigninView()
 //            CameraContentView(cameraManagerViewModel: cameraManagerViewModel)
-           ContentView()
-//                .preferredColorScheme(self.colorScheme ? .light:.dark)
-//                //CoreData連結
+//           ContentView()
+                .preferredColorScheme(self.colorScheme ? .light:.dark)
+//              //CoreData連結
 //                .environment(.managedObjectContext, persistenceController.container.viewContext)
-//                //提供環境User初始化
-//                .environmentObject(User())
-//                //固定深色模式
-//                .preferredColorScheme(.dark)
+                //提供環境User初始化
+                .environmentObject(User())
+                //固定深色模式
+                .preferredColorScheme(.dark)
         }
     }
 }

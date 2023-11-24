@@ -16,7 +16,7 @@ struct ContentView: View {
     @State private var showSide: Bool = false
     // 跟蹤標籤頁
     @State private var select: Int = 0
-    @State private var information: Information = Information(name: "vc", gender: "女性", birthday:Date(), height: 161, weight: 50, BMI: 19.68)
+    @State private var information: Information = Information(name: "vc", gender: "女性", birthday:Date(), height: "161", weight: "50", BMI: 19.68)
 
     //    @StateObject private var cameraManagerViewModel = CameraManagerViewModel()
         

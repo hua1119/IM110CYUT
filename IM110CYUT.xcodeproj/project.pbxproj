@@ -49,7 +49,7 @@
 		04DEF6EA2B105CB900FDDA2C /* MyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DEF6E92B105CB900FDDA2C /* MyView.swift */; };
 		04DEF6EC2B105CBC00FDDA2C /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DEF6EB2B105CBC00FDDA2C /* MenuView.swift */; };
 		04DEF6EE2B105CC600FDDA2C /* SigninView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DEF6ED2B105CC600FDDA2C /* SigninView.swift */; };
-		04DEF6F22B105E9300FDDA2C /* SingupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DEF6F12B105E9300FDDA2C /* SingupView.swift */; };
+		04DEF6F22B105E9300FDDA2C /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DEF6F12B105E9300FDDA2C /* SignupView.swift */; };
 		04DEF6F42B105EAB00FDDA2C /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DEF6F32B105EAB00FDDA2C /* SpinnerView.swift */; };
 		04DEF6F92B105EAF00FDDA2C /* MemberButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DEF6F62B105EAF00FDDA2C /* MemberButton.swift */; };
 		04DEF6FA2B105EAF00FDDA2C /* TagButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DEF6F72B105EAF00FDDA2C /* TagButton.swift */; };
@@ -92,7 +92,7 @@
 		04DEF6E92B105CB900FDDA2C /* MyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyView.swift; sourceTree = "<group>"; };
 		04DEF6EB2B105CBC00FDDA2C /* MenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		04DEF6ED2B105CC600FDDA2C /* SigninView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SigninView.swift; sourceTree = "<group>"; };
-		04DEF6F12B105E9300FDDA2C /* SingupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingupView.swift; sourceTree = "<group>"; };
+		04DEF6F12B105E9300FDDA2C /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		04DEF6F32B105EAB00FDDA2C /* SpinnerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinnerView.swift; sourceTree = "<group>"; };
 		04DEF6F62B105EAF00FDDA2C /* MemberButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberButton.swift; sourceTree = "<group>"; };
 		04DEF6F72B105EAF00FDDA2C /* TagButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagButton.swift; sourceTree = "<group>"; };
@@ -222,7 +222,7 @@
 				048D11A72B10745800F57403 /* PlanView.swift */,
 				04DEF6ED2B105CC600FDDA2C /* SigninView.swift */,
 				048D11A92B10748D00F57403 /* ShopView.swift */,
-				04DEF6F12B105E9300FDDA2C /* SingupView.swift */,
+				04DEF6F12B105E9300FDDA2C /* SignupView.swift */,
 				04DEF6F32B105EAB00FDDA2C /* SpinnerView.swift */,
 			);
 			path = View;
@@ -339,7 +339,7 @@
 				04DEF6F92B105EAF00FDDA2C /* MemberButton.swift in Sources */,
 				04DEF6F42B105EAB00FDDA2C /* SpinnerView.swift in Sources */,
 				04DEF6E02B105C8D00FDDA2C /* DynamicView.swift in Sources */,
-				04DEF6F22B105E9300FDDA2C /* SingupView.swift in Sources */,
+				04DEF6F22B105E9300FDDA2C /* SignupView.swift in Sources */,
 				04DEF6DE2B105C8700FDDA2C /* ContentView.swift in Sources */,
 				04DEF6BF2B105BFF00FDDA2C /* Healthy.swift in Sources */,
 				04C3D8CC2B1057ED001C28D9 /* IM110CYUTApp.swift in Sources */,

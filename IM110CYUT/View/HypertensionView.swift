@@ -46,7 +46,7 @@ struct HypertensionView: View
     @State private var chartData: [HypertensionRecord] = []
     @State private var isShowingList: Bool = false
     @State private var scrollToBottom: Bool = false
-    @State private var showAlert: Bool = false//
+    @State private var showAlert: Bool = false
     
     var body: some View
     {

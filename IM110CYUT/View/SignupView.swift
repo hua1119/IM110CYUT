@@ -44,7 +44,7 @@ struct SignupView: View
                 } else
                 {
                     //Realtime Database
-                    RealTime().signup(account: self.information.0, password: self.information.1, name: self.information.3,gender: self.information.4,birthday:self.information.5, height: self.information.6,weight: self.information.7)
+                    RealTime().signup(account: self.information.0, password: self.information.1, name: self.information.3,gender: self.information.4,birthday:self.information.5, height: String(self.information.6),weight: String(self.information.7))
                     self.result.1="註冊成功!"
                     self.result.0.toggle()
                 }
@@ -401,7 +401,7 @@ struct SignupView: View
     }
 }
 
-struct SigninView_Previews: PreviewProvider
+struct SignupView_Previews: PreviewProvider
 {
     static var previews: some View
     {

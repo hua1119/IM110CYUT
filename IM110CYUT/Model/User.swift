@@ -1,6 +1,6 @@
 //
 //  User.swift
-//  
+//
 //
 //
 //
@@ -22,9 +22,9 @@ class User: ObservableObject
     //生日
     @Published var birthday: String
     //身高
-    @Published var height: Double
+    @Published var height: String
     //體重
-    @Published var weight: Double
+    @Published var weight: String
 
     //MARK: 初始化
     init()
@@ -35,8 +35,8 @@ class User: ObservableObject
         self.name=""
         self.gender=""
         self.birthday=""
-        self.height=0.0
-        self.weight=0.0
+        self.height="0.0"
+        self.weight="0.0"
 
     }
 
@@ -49,11 +49,11 @@ class User: ObservableObject
         self.name=""
         self.gender=""
         self.birthday=""
-        self.height=0.0
-        self.weight=0.0
+        self.height="0.0"
+        self.weight="0.0"
     }
     //MARK: 更新
-    func setUser(id: String, account: String, password: String, name: String, gender: String, birthday: String, height: Double, weight: Double)
+    func setUser(id: String, account: String, password: String, name: String, gender: String, birthday: String, height: String, weight: String)
     {
         self.id=id
         self.account=account
@@ -65,4 +65,3 @@ class User: ObservableObject
         self.weight=weight
     }
 }
-

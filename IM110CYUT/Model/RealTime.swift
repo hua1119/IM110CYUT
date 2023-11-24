@@ -60,9 +60,9 @@ struct RealTime
                                     value["Password"] as! String,
                                     value ["Name"] as! String ,
                                     value ["gender"] as! String ,
-//                                    value["birthday"] as! String,
-//                                    value ["height"] as! Double  ,
-//                                    value ["weight"] as! Double
+                                    value["birthday"] as! String,
+                                    value ["height"] as! String,
+                                    value ["weight"] as! String
                                 ],
                                 //錯誤為空值
                                 nil
@@ -114,7 +114,7 @@ struct RealTime
             }
     }
     //MARK: 註冊
-    func signup(account: String, password: String, name: String, gender: String, birthday: String, height: Double ,weight: Double)
+    func signup(account: String, password: String, name: String, gender: String, birthday: String, height: String, weight: String)
     {
         //隨機產生ID
         let id: String=UUID().uuidString
