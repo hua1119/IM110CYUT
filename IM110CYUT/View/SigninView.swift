@@ -219,6 +219,9 @@ struct SigninView: View
             }
         }
         //MARK: 結果Alert
+        .onTapGesture {
+            self.dismissKeyboard()
+        }
         .alert(self.result.1, isPresented: self.$result.0)
         {
             Button("完成", role: .cancel)

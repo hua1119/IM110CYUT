@@ -11,6 +11,7 @@ struct SignupView: View
     
     //執行結果Alert
     @State private var result : (Bool,String)=(false,"")
+    //生日顯示
     @State private var show: Bool=false
     @State private var description: String=""
     @State private var date: Date=Date()
@@ -47,6 +48,7 @@ struct SignupView: View
                     RealTime().signup(account: self.information.0, password: self.information.1, name: self.information.3,gender: self.information.4,birthday:self.information.5, height: String(self.information.6),weight: String(self.information.7), like: String(self.information.8))
                     self.result.1="註冊成功!"
                     self.result.0.toggle()
+                    self.dismiss()
                 }
             }
         }
@@ -419,7 +421,7 @@ struct SignupView: View
                         {
                             //註冊
                             await self.signup()
-                            self.dismiss()
+                          
                         }
                     }
                 label:
@@ -439,6 +441,9 @@ struct SignupView: View
             
         }
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
+        .onTapGesture {
+            self.dismissKeyboard()
+        }
         //MARK: 結果Alert
         .alert(self.result.1, isPresented: self.$result.0)
         {
