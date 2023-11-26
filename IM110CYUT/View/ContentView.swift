@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     //存取登入狀態
-    @AppStorage("logIn") private var logIn: Bool=false
+    @AppStorage("signin") private var signin: Bool=false
     // 切換深淺模式
     @State var isDarkMode: Bool = false
     // TabView選擇的頁面

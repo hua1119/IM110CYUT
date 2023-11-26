@@ -12,7 +12,7 @@ struct MyView: View
 {
     @AppStorage("userImage") private var userImage: Data?
     @AppStorage("colorScheme") private var colorScheme: Bool=true
-    @AppStorage("logIn") private var logIn: Bool = false
+    @AppStorage("signin") private var signin: Bool = false
     
     @Binding var select: Int
     @Binding var information: Information
@@ -254,7 +254,7 @@ struct MyView: View
                                     {
                                 withAnimation(.easeInOut)
                                 {
-                                    self.logIn = false
+                                    self.signin = false
                                 }
                             }) {
                                 HStack
