@@ -1,4 +1,4 @@
-//血脂（Blood Lipids）的英文縮寫是 BL 
+//血脂（Blood Lipids）的英文縮寫是 BL
 //
 //
 //  HyperlipidemiaView.swift 高血脂
@@ -57,8 +57,29 @@ struct HyperlipidemiaView: View
     {
         NavigationView
         {
-            VStack(spacing: 30)
+            VStack
             {
+                HStack
+                {
+                    Text("血脂紀錄")
+                        .foregroundColor(Color("textcolor"))
+                        .frame(width: 300, height: 50)
+                        .font(.system(size: 33, weight: .bold))
+                        .offset(x:-60)
+
+                    Button(action: {
+                        isShowingList.toggle()
+                    }) {
+                        Image(systemName: "list.dash")
+                            .font(.title)
+                            .foregroundColor(Color(hue: 0.031, saturation: 0.803, brightness: 0.983))
+                            .padding()
+                            .cornerRadius(10)
+                            .padding(.trailing, 20)
+                            .imageScale(.large)
+                    }
+                    .offset(x:10)
+                }
                 GeometryReader
                 {
                     geometry in
@@ -98,7 +119,7 @@ struct HyperlipidemiaView: View
                             .chartForegroundStyleScale([
                                 "血脂值": .orange
                             ])
-                            .frame(width: 350, height: 150)
+                            .frame(width: 350, height: 200)
                             .onAppear
                             {
                                 if scrollToBottom
@@ -109,7 +130,7 @@ struct HyperlipidemiaView: View
                             }
                         }
                     }
-                    .offset(x:20,y: 70)
+                    .padding()
                 }
                 VStack
                 {
@@ -173,24 +194,13 @@ struct HyperlipidemiaView: View
                                 .font(.title3)
                         }
                         .padding()
+                        .offset(y: 10)
+                    }
+                    .onTapGesture {
+                        self.dismissKeyboard()
                     }
                 }
                 .offset(y: -70)
-            }
-            .navigationTitle("血脂紀錄")
-            .toolbar
-            {
-                ToolbarItem(placement: .navigationBarTrailing)
-                {
-                    Button(action:
-                            {
-                        isShowingList.toggle()
-                    }) {
-                        Image(systemName: "list.dash")
-                            .font(.title)
-                            .foregroundColor(Color(hue: 0.031, saturation: 0.803, brightness: 0.983))
-                    }
-                }
             }
             .sheet(isPresented: $isShowingList)
             {
