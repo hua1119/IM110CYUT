@@ -218,14 +218,26 @@ struct BMIRecordsListView: View {
     }
 }
 
+extension Double {
+    func rounded(toPlaces places: Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return (self * divisor).rounded() / divisor
+    }
+}
+
 struct BMIRecordDetailView: View {
     var record: BMIRecord
     
     var body: some View {
         VStack {
-            Text("身高: \(record.height) 公分")
-            Text("體重: \(record.weight) 公斤")
-            Text("你的BMI為: \(record.bmi)")
+            bmiImage
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 100, height: 100)  // Adjust the size as needed
+                .padding()
+            Text("身高: \(String(format: "%.1f", record.height)) 公分")
+            Text("體重: \(String(format: "%.1f", record.weight)) 公斤")
+            Text("你的BMI為: \(String(format: "%.2f", record.bmi))")
             
             Text("BMI分類: \(bmiCategory)")
                 .foregroundColor(categoryColor)
@@ -248,6 +260,23 @@ struct BMIRecordDetailView: View {
             return "中度肥胖"
         default:
             return "重度肥胖"
+        }
+    }
+    
+    private var bmiImage: Image {
+        switch bmiCategory {
+        case "過瘦":
+            return Image("too_thin")
+        case "標準":
+            return Image("standard")
+        case "過重":
+            return Image("heavy")
+        case "輕度肥胖":
+            return Image("too_heavy")
+        case "中度肥胖":
+            return Image("mild_obesuty")
+        default:
+            return Image("sever_obesuty")
         }
     }
     

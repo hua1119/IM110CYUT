@@ -154,9 +154,9 @@
 				04DEF6B92B105BFF00FDDA2C /* Extension */,
 				04DEF6C02B105C0D00FDDA2C /* Function */,
 				04DEF6C52B105C1800FDDA2C /* Model */,
+				04C3D8D12B1057EE001C28D9 /* Preview Content */,
 				04DEF6DA2B105C6700FDDA2C /* View */,
 				04DEF6F52B105EAF00FDDA2C /* ViewModel */,
-				04C3D8D12B1057EE001C28D9 /* Preview Content */,
 			);
 			path = IM110CYUT;
 			sourceTree = "<group>";
