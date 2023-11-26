@@ -2,19 +2,19 @@ import SwiftUI
 
 struct SignupView: View
 {
-
+    
     @Binding var textselect: Int
     
     @Environment(\.dismiss) private var dismiss
     
-    @State private var information: (String, String, String, String, String, String, Double, Double)=("", "", "", "", "", "", 0.0 , 0.0 )
-  
+    @State private var information: (String, String, String, String, String, String, Double, Double, Double)=("", "", "", "", "", "", 0.0 , 0.0 ,0.0)
+    
     //執行結果Alert
     @State private var result : (Bool,String)=(false,"")
     @State private var show: Bool=false
     @State private var description: String=""
     @State private var date: Date=Date()
-
+    
     @State private var selectedTab = 0
     init(textselect: Binding<Int>)
     {
@@ -40,11 +40,11 @@ struct SignupView: View
                 {
                     self.result.1=error.localizedDescription
                     self.result.0.toggle()
-                //註冊成功
+                    //註冊成功
                 } else
                 {
                     //Realtime Database
-                    RealTime().signup(account: self.information.0, password: self.information.1, name: self.information.3,gender: self.information.4,birthday:self.information.5, height: String(self.information.6),weight: String(self.information.7))
+                    RealTime().signup(account: self.information.0, password: self.information.1, name: self.information.3,gender: self.information.4,birthday:self.information.5, height: String(self.information.6),weight: String(self.information.7), like: String(self.information.8))
                     self.result.1="註冊成功!"
                     self.result.0.toggle()
                 }
@@ -90,26 +90,26 @@ struct SignupView: View
     }
     
     //MARK: 驗證密碼
-     private func passcheck() -> Bool
-     {
-         return !self.information.1.isEmpty && self.information.1==self.information.2
-     }
-     
-     private func CurrenPageAcc() -> Bool
-     {
-         if self.information.0.isEmpty || self.information.1.isEmpty || self.information.2.isEmpty {
-     
-             return false
-         
-         } else if !self.passcheck() {
-
-             return false
-         } else {
-       
-             return true
-         }
-     }
-
+    private func passcheck() -> Bool
+    {
+        return !self.information.1.isEmpty && self.information.1==self.information.2
+    }
+    
+    private func CurrenPageAcc() -> Bool
+    {
+        if self.information.0.isEmpty || self.information.1.isEmpty || self.information.2.isEmpty {
+            
+            return false
+            
+        } else if !self.passcheck() {
+            
+            return false
+        } else {
+            
+            return true
+        }
+    }
+    
     var body: some View
     {
         TabView(selection: $selectedTab)
@@ -143,21 +143,24 @@ struct SignupView: View
                             .frame(width: 300, height: 50)
                             .cornerRadius(100)
                     }
-                    Button
+                    VStack
                     {
+                        Button
+                        {
+                            
+                            selectedTab = 1
+                        }
                         
-                        selectedTab = 1
-                    }
-                    
-                label:
-                    {
-                        Text("下一步")
-                            .font(.title3)
-                            .foregroundColor(.white)
-                            .padding()
-                            .frame(width: 300, height: 60)
-                            .background(Color(red: 0.828, green: 0.249, blue: 0.115))
-                            .clipShape(Capsule())
+                    label:
+                        {
+                            Text("下一步")
+                                .font(.title3)
+                                .foregroundColor(.white)
+                                .padding()
+                                .frame(width: 300, height: 60)
+                                .background(Color(red: 0.828, green: 0.249, blue: 0.115))
+                                .clipShape(Capsule())
+                        }
                     }
                 }
             }
@@ -178,19 +181,22 @@ struct SignupView: View
                         .frame(width: 300, height: 50)
                         .cornerRadius(100)
                 }
-                Button
+                VStack
                 {
-                    selectedTab = 2
-                }
-            label:
-                {
-                    Text("下一步")
-                        .font(.title3)
-                        .foregroundColor(.white)
-                        .padding()
-                        .frame(width: 300, height: 60)
-                        .background(Color(red: 0.828, green: 0.249, blue: 0.115))
-                        .clipShape(Capsule())
+                    Button
+                    {
+                        selectedTab = 2
+                    }
+                label:
+                    {
+                        Text("下一步")
+                            .font(.title3)
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(width: 300, height: 60)
+                            .background(Color(red: 0.828, green: 0.249, blue: 0.115))
+                            .clipShape(Capsule())
+                    }
                 }
             }
             .tag(1)
@@ -214,19 +220,22 @@ struct SignupView: View
                     .frame(width: 330, height: 100)
                 }
                 .padding(20)
-                Button
+                VStack
                 {
-                    selectedTab = 3
-                }
-            label:
-                {
-                    Text("下一步")
-                        .font(.title3)
-                        .foregroundColor(.white)
-                        .padding()
-                        .frame(width: 300, height: 60)
-                        .background(Color(red: 0.828, green: 0.249, blue: 0.115))
-                        .clipShape(Capsule())
+                    Button
+                    {
+                        selectedTab = 3
+                    }
+                label:
+                    {
+                        Text("下一步")
+                            .font(.title3)
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(width: 300, height: 60)
+                            .background(Color(red: 0.828, green: 0.249, blue: 0.115))
+                            .clipShape(Capsule())
+                    }
                 }
             }
             .tag(2)
@@ -257,7 +266,7 @@ struct SignupView: View
                     {
                         DatePicker(selection: self.$date, displayedComponents: .date)
                         {
-                           
+                            
                         }
                         .onChange(of: self.date) {(_, new) in
                             self.information.5=new.formatted(date: .numeric, time: .omitted)
@@ -267,21 +276,23 @@ struct SignupView: View
                     .datePickerStyle(.wheel)
                     .padding(20)
                 }
-                
-                Button
+                VStack
                 {
-                    selectedTab = 4
-                }
-            label:
-                {
-                    Text("下一步")
-                        .font(.title3)
-                        .foregroundColor(.white)
-                        .padding()
-                        .frame(width: 300, height: 60)
-                        .background(Color(red: 0.828, green: 0.249, blue: 0.115))
-                        .clipShape(Capsule())
-                    
+                    Button
+                    {
+                        selectedTab = 4
+                    }
+                label:
+                    {
+                        Text("下一步")
+                            .font(.title3)
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(width: 300, height: 60)
+                            .background(Color(red: 0.828, green: 0.249, blue: 0.115))
+                            .clipShape(Capsule())
+                        
+                    }
                 }
             }
             .tag(3)
@@ -293,7 +304,7 @@ struct SignupView: View
                 Text("請輸入您的身高(CM)和體重(KG)")
                     .font(.title2)
                     .foregroundColor(Color(red: 0.828, green: 0.249, blue: 0.115))
-               
+                
                 //身高
                 VStack
                 {
@@ -315,23 +326,60 @@ struct SignupView: View
                         .cornerRadius(100)
                 }
                 .padding()
-                
-                Button
+                VStack
                 {
-                    selectedTab = 5
-                }
-            label:
-                {
-                    Text("下一步")
-                        .font(.title3)
-                        .foregroundColor(.white)
-                        .padding()
-                        .frame(width: 300, height: 60)
-                        .background(Color(red: 0.828, green: 0.249, blue: 0.115))
-                        .clipShape(Capsule())
+                    Button
+                    {
+                        selectedTab = 5
+                    }
+                label:
+                    {
+                        Text("下一步")
+                            .font(.title3)
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(width: 300, height: 60)
+                            .background(Color(red: 0.828, green: 0.249, blue: 0.115))
+                            .clipShape(Capsule())
+                    }
                 }
             }
             .tag(4)
+            
+            //喜好調查
+            VStack
+            {
+                HStack
+                {
+                    Text("鹹")
+                        .padding()
+                    Slider(value: $information.8, in: 1...5, step: 1)
+                        .padding()
+                        .accentColor(.blue)
+                    Text("淡")
+                        .padding()
+                }
+                Text("喜好偏向: \(Int(information.8))")
+                    .padding(.leading, 15)
+                VStack
+                {
+                    Button
+                    {
+                        selectedTab = 6
+                    }
+                label:
+                    {
+                        Text("下一步")
+                            .font(.title3)
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(width: 300, height: 60)
+                            .background(Color(red: 0.828, green: 0.249, blue: 0.115))
+                            .clipShape(Capsule())
+                    }
+                }
+            }
+            .tag(5)
             
             //MARK: 所有資料
             VStack
@@ -363,27 +411,34 @@ struct SignupView: View
                 .listStyle(.plain)
                 .background(.clear)
                 .listRowSeparator(.hidden)
-                Button
-                         {
-                             Task
-                             {
-                                 //註冊
-                                 await self.signup()
-                             }
-                         }
-            label:
+                VStack
                 {
-                    Text("完成註冊～歡迎註冊")
-                        .font(.title3)
-                        .foregroundColor(.white)
-                        .padding()
-                        .frame(width: 300, height: 60)
-                        .background(Color(red: 0.828, green: 0.249, blue: 0.115))
-                        .clipShape(Capsule())
+                    Button
+                    {
+                        Task
+                        {
+                            //註冊
+                            await self.signup()
+                            self.dismiss()
+                        }
+                    }
+                label:
+                    {
+                        Text("完成註冊～歡迎註冊")
+                            .font(.title3)
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(width: 300, height: 60)
+                            .background(Color(red: 0.828, green: 0.249, blue: 0.115))
+                            .clipShape(Capsule())
+                    }
                 }
             }
-            .tag(5)
+            .tag(6)
+            
+            
         }
+        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
         //MARK: 結果Alert
         .alert(self.result.1, isPresented: self.$result.0)
         {
@@ -396,8 +451,6 @@ struct SignupView: View
                 }
             }
         }
-
-        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
     }
 }
 

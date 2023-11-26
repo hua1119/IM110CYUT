@@ -1,4 +1,4 @@
-//血糖（Blood Sugar）的英文縮寫是 BS 
+//血糖（Blood Sugar）的英文縮寫是 BS
 //
 //  HyperglycemiaView.swift 高血糖
 //

@@ -25,6 +25,8 @@ class User: ObservableObject
     @Published var height: String
     //體重
     @Published var weight: String
+    //
+    @Published var like : String
 
     //MARK: 初始化
     init()
@@ -37,7 +39,7 @@ class User: ObservableObject
         self.birthday=""
         self.height="0.0"
         self.weight="0.0"
-
+        self.like="0.0"
     }
 
     //MARK: 刪除
@@ -51,9 +53,10 @@ class User: ObservableObject
         self.birthday=""
         self.height="0.0"
         self.weight="0.0"
+        self.like="0.0"
     }
     //MARK: 更新
-    func setUser(id: String, account: String, password: String, name: String, gender: String, birthday: String, height: String, weight: String)
+    func setUser(id: String, account: String, password: String, name: String, gender: String, birthday: String, height: String, weight: String ,like: String)
     {
         self.id=id
         self.account=account
@@ -63,5 +66,6 @@ class User: ObservableObject
         self.birthday=birthday
         self.height=height
         self.weight=weight
+        self.like=like
     }
 }
