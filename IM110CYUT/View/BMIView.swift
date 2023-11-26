@@ -7,7 +7,7 @@ struct BMIRecord: Identifiable {
     var weight: Double
     var bmi: Double
     var date: Date
-    
+
     init(height: Double, weight: Double) {
         self.height = height
         self.weight = weight
@@ -35,24 +35,24 @@ struct BMIView: View {
     @State private var height: String = ""
     @State private var weight: String = ""
     @State private var bmiRecords: [BMIRecord] = []
+    @State private var isShowingList: Bool = false
 
     var body: some View {
-        NavigationView
-        {
+        NavigationView {
             VStack {
                 ScrollView(.horizontal) {
                     HStack(spacing: 30) {
                         Chart(allSensors) { sensor in
                             let groupedRecords = Dictionary(grouping: sensor.records, by: { formattedDate($0.date) })
                             let latestRecords = groupedRecords.mapValues { $0.last! }
-                            
+
                             ForEach(latestRecords.sorted(by: { $0.key < $1.key }), id: \.key) { date, record in
                                 LineMark(
                                     x: .value("Day", date),
                                     y: .value("Value", record.bmi)
                                 )
                                 .lineStyle(.init(lineWidth: 5))
-                                
+
                                 PointMark(
                                     x: .value("Day", date),
                                     y: .value("Value", record.bmi)
@@ -63,10 +63,8 @@ struct BMIView: View {
                                         .foregroundColor(Color("textcolor"))
                                 }
                             }
-                            
-                            // Use sensor.id
+
                             .foregroundStyle(by: .value("Location", sensor.id))
-                            // Use sensor.id
                             .symbol(by: .value("Sensor Location", sensor.id))
                             .symbolSize(100)
                         }
@@ -75,14 +73,14 @@ struct BMIView: View {
                     }
                     .padding()
                 }
-                
-                VStack(spacing: 30) {
+
+                VStack(spacing: 10) {
                     Text("BMI計算")
                         .font(.system(size: 20, weight: .semibold))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.leading, 20)
                         .foregroundColor(Color("textcolor"))
-                    
+
                     VStack(spacing: -5) {
                         TextField("請輸入身高（公分）", text: $height)
                             .padding()
@@ -92,9 +90,10 @@ struct BMIView: View {
                             .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillChangeFrameNotification)) { _ in
                                 height = height.filter { "0123456789.".contains($0) }
                             }
-                        
+
                         TextField("請輸入體重（公斤）", text: $weight)
                             .padding()
+                            .offset(y: 0)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .keyboardType(.numberPad)
                             .frame(width: 330)
@@ -102,18 +101,19 @@ struct BMIView: View {
                                 weight = weight.filter { "0123456789.".contains($0) }
                             }
                     }
-                    
+
                     Button(action: {
                         if let heightValue = Double(height), let weightValue = Double(weight) {
                             let newRecord = BMIRecord(height: heightValue, weight: weightValue)
-                            
+                            bmiRecords.append(newRecord)
+
                             if let existingSensorIndex = allSensors.firstIndex(where: { $0.id == "BMI" }) {
                                 allSensors[existingSensorIndex].records.append(newRecord)
                             } else {
                                 let newSensor = TemperatureSensor(id: "BMI", records: [newRecord])
                                 allSensors.append(newSensor)
                             }
-                            
+
                             height = ""
                             weight = ""
                         }
@@ -127,11 +127,53 @@ struct BMIView: View {
                             .font(.title3)
                     }
                     .padding()
+                    .offset(y: -20)
+                    .navigationTitle("BMI紀錄")
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            Button(action: {
+                                isShowingList.toggle()
+                            }) {
+                                Image(systemName: "list.dash")
+                                    .font(.title)
+                                    .foregroundColor(Color(hue: 0.031, saturation: 0.803, brightness: 0.983))
+                            }
+                        }
+                    }
+                    .sheet(isPresented: $isShowingList) {
+                        BMIRecordsListView(records: $bmiRecords)
+                    }
                 }
             }
-            .offset(y: 20)
         }
-        .navigationTitle("血壓紀錄")
+    }
+}
+
+struct BMIRecordsListView: View {
+    @Binding var records: [BMIRecord]
+
+    var body: some View {
+        NavigationView {
+            List {
+                ForEach(records) { record in
+                    NavigationLink(destination: Text("你的BMI為 \(record.bmi)")) {
+                        Text("\(formattedDate(record.date)): \(record.bmi, specifier: "%.2f")")
+                    }
+                }
+                .onDelete(perform: deleteRecord)
+            }
+            .navigationTitle("BMI紀錄列表")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    EditButton()
+                }
+            }
+        }
+    }
+    
+    //刪除
+    private func deleteRecord(at offsets: IndexSet) {
+        records.remove(atOffsets: offsets)
     }
 }
 

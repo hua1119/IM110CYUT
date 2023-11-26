@@ -236,7 +236,7 @@ struct HypertensionRecordsListView: View
     }
 }
 
-//Edit
+//刪除和編輯
 struct EditHypertensionRecordView: View
 {
     @Binding var record: HypertensionRecord
