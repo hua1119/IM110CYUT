@@ -3,7 +3,7 @@ import Charts
 
 class BMIRecordViewModel: ObservableObject {
     @Published var bmiRecords: [BMIRecord]
-    
+
     init(bmiRecords: [BMIRecord] = []) {
         self.bmiRecords = bmiRecords
     }
@@ -11,7 +11,7 @@ class BMIRecordViewModel: ObservableObject {
 
 class TemperatureSensorViewModel: ObservableObject {
     @Published var allSensors: [TemperatureSensor]
-    
+
     init(allSensors: [TemperatureSensor] = []) {
         self.allSensors = allSensors
     }
@@ -50,10 +50,10 @@ private func formattedDate(_ date: Date) -> String {
 struct BMIView: View {
     @State private var height: String = ""
     @State private var weight: String = ""
-    
+
     @ObservedObject private var bmiRecordViewModel = BMIRecordViewModel()
     @ObservedObject private var temperatureSensorViewModel = TemperatureSensorViewModel(allSensors: [TemperatureSensor(id: "BMI", records: [])])
-    
+
     @State private var isShowingList: Bool = false
 
     var body: some View {
@@ -88,7 +88,7 @@ struct BMIView: View {
                             .symbolSize(100)
                         }
                         .chartForegroundStyleScale(["BMI": .orange])
-                      
+
                         .frame(width: 350, height: 200)
                     }
                     .padding()
@@ -172,7 +172,7 @@ struct BMIView: View {
 struct BMIRecordsListView: View {
     @Binding var records: [BMIRecord]
     @ObservedObject var temperatureSensorViewModel: TemperatureSensorViewModel
-    
+
     init(records: Binding<[BMIRecord]>, temperatureSensorViewModel: TemperatureSensorViewModel) {
         self._records = records
         self.temperatureSensorViewModel = temperatureSensorViewModel
@@ -182,7 +182,7 @@ struct BMIRecordsListView: View {
         NavigationView {
             List {
                 ForEach(records) { record in
-                    NavigationLink(destination: Text("你的BMI為 \(record.bmi)")) {
+                    NavigationLink(destination: BMIRecordDetailView(record: record)) {
                         Text("\(formattedDate(record.date)): \(record.bmi, specifier: "%.2f")")
                     }
                 }
@@ -200,13 +200,65 @@ struct BMIRecordsListView: View {
     // 刪除
     private func deleteRecord(at offsets: IndexSet) {
         records.remove(atOffsets: offsets)
-        
+
         // 更新TemperatureSensor的records
         if let sensorIndex = temperatureSensorViewModel.allSensors.firstIndex(where: { $0.id == "BMI" }) {
             temperatureSensorViewModel.allSensors[sensorIndex].records = records
         }
     }
 }
+
+struct BMIRecordDetailView: View {
+    var record: BMIRecord
+
+    var body: some View {
+        VStack {
+            Text("身高: \(record.height) 公分")
+            Text("體重: \(record.weight) 公斤")
+            Text("你的BMI為: \(record.bmi)")
+
+            Text("BMI分類: \(bmiCategory)")
+                .foregroundColor(categoryColor)
+                .font(.headline)
+        }
+        .navigationTitle("BMI 詳細資訊")
+    }
+
+    private var bmiCategory: String {
+        switch record.bmi {
+        case ..<18.5:
+            return "過瘦"
+        case 18.5..<24:
+            return "標準"
+        case 24..<27:
+            return "過重"
+        case 27..<30:
+            return "輕度肥胖"
+        case 30..<35:
+            return "中度肥胖"
+        default:
+            return "重度肥胖"
+        }
+    }
+
+    private var categoryColor: Color {
+        switch record.bmi {
+        case ..<18.5:
+            return .blue
+        case 18.5..<24:
+            return .green
+        case 24..<27:
+            return .yellow
+        case 27..<30:
+            return .orange
+        case 30..<35:
+            return .orange
+        default:
+            return .red
+        }
+    }
+}
+
 
 struct BMIView_Previews: PreviewProvider {
     static var previews: some View {

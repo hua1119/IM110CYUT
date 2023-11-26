@@ -53,7 +53,7 @@ struct ContentView: View {
                     }
                     
                     //                CameraContentView(cameraManagerViewModel: self.cameraManagerViewModel)
-                    ShopView()
+                    CookView()
                         .tag(2)
                         .tabItem
                     {

@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct PlanView: View {
+    
     @State private var plans: [String: [String]] = {
         var initialPlans: [String: [String]] = [:]
         let dateFormatter = DateFormatter()
@@ -19,7 +20,7 @@ struct PlanView: View {
         var day: String
         var planIndex: Int
         @Binding var plans: [String: [String]]
-
+        @State private var searchText: String = ""
         @State private var editedPlan: String
 
         @Environment(\.presentationMode) var presentationMode
@@ -29,25 +30,157 @@ struct PlanView: View {
             self.planIndex = planIndex
             self._plans = plans
             self._editedPlan = State(initialValue: plans.wrappedValue[day]?[planIndex] ?? "")
+            
         }
 
         var body: some View {
-            VStack {
-                Text("編輯 \(day) 的計畫")
-                    .font(.title)
-
-                TextField("輸入計畫", text: $editedPlan)
-
-                Button("儲存") {
-                    plans[day]?[planIndex] = editedPlan
-                    presentationMode.wrappedValue.dismiss() // 關閉當前視圖
+            VStack{
+                HStack {
                 }
-                .padding()
             }
-            .padding()
-        }
-    }
-
+            .navigationBarItems(trailing: Button("保存") {
+                // 保存編輯計畫
+                self.presentationMode.wrappedValue.dismiss()
+            })
+                NavigationView {
+                    ScrollView {
+                        VStack(spacing:5) {
+                            HStack(spacing:-10) {
+                                TextField("搜尋食譜.....", text: $searchText)
+                                    .padding()
+                                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                                
+                                Button(action: {
+                                                       // 執行搜尋操作
+                                                   }) {
+                                                       Image(systemName: "magnifyingglass") // 放大鏡圖標
+                                                           .padding()
+                                                   }
+                                               }
+                            .padding(.top, -40)
+                            
+                            VStack (spacing:30){
+                                Button(action: {
+                                    // 按鈕 1 的動作
+                                }) {
+                                    Image("1") // 替換 "button_image_1" 為你的圖片名稱
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 350, height: 150)
+                                        .cornerRadius(10)
+                                        .overlay(
+                                            Text("懶人")
+                                                .foregroundColor(.black)
+                                                .font(.title)
+                                                .padding()
+                                        )
+                                        .opacity(0.8)
+                                }
+                                Button(action: {
+                                    // 按鈕 1 的動作
+                                }) {
+                                    Image("1") // 替換 "button_image_1" 為你的圖片名稱
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 350, height: 150)
+                                        .cornerRadius(10)
+                                        .overlay(
+                                            Text("減肥")
+                                                .foregroundColor(.black)
+                                                .font(.title)
+                                                .padding()
+                                        )
+                                        .opacity(0.8)
+                                }
+                                Button(action: {
+                                    // 按鈕 1 的動作
+                                }) {
+                                    Image("1") // 替換 "button_image_1" 為你的圖片名稱
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 350, height: 150)
+                                        .cornerRadius(10)
+                                        .overlay(
+                                            Text("省錢")
+                                                .foregroundColor(.black)
+                                                .font(.title)
+                                                .padding()
+                                        )
+                                        .opacity(0.8)
+                                }
+                                Button(action: {
+                                    // 按鈕 1 的動作
+                                }) {
+                                    Image("1") // 替換 "button_image_1" 為你的圖片名稱
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 350, height: 150)
+                                        .cornerRadius(10)
+                                        .overlay(
+                                            Text("放縱")
+                                                .foregroundColor(.black)
+                                                .font(.title)
+                                                .padding()
+                                        )
+                                        .opacity(0.8)
+                                }
+                                Button(action: {
+                                    // 按鈕 1 的動作
+                                }) {
+                                    Image("1") // 替換 "button_image_1" 為你的圖片名稱
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 350, height: 150)
+                                        .cornerRadius(10)
+                                        .overlay(
+                                            Text("養生")
+                                                .foregroundColor(.black)
+                                                .font(.title)
+                                                .padding()
+                                        )
+                                        .opacity(0.8)
+                                }
+                                Button(action: {
+                                    // 按鈕 1 的動作
+                                }) {
+                                    Image("1") // 替換 "button_image_1" 為你的圖片名稱
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 350, height: 150)
+                                        .cornerRadius(10)
+                                        .overlay(
+                                            Text("今日推薦")
+                                                .foregroundColor(.black)
+                                                .font(.title)
+                                                .padding()
+                                        )
+                                        .opacity(0.8)
+                                }
+                                Button(action: {
+                                    // 按鈕 1 的動作
+                                }) {
+                                    Image("1") // 替換 "button_image_1" 為你的圖片名稱
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 350, height: 150)
+                                        .cornerRadius(10)
+                                        .overlay(
+                                            Text("聽天由命")
+                                                .foregroundColor(.black)
+                                                .font(.title)
+                                                .padding()
+                                        )
+                                        .opacity(0.8)
+                                }
+                            }
+                            .padding()
+                        }
+                    }
+                               }
+                           }
+                       }
+    
+    
     var body: some View {
         NavigationView {
             List {

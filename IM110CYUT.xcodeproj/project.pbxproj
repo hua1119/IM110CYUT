@@ -25,6 +25,7 @@
 		04C3D8F12B10592A001C28D9 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 04C3D8F02B10592A001C28D9 /* FirebaseFirestore */; };
 		04C3D8F32B10592A001C28D9 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 04C3D8F22B10592A001C28D9 /* FirebaseStorage */; };
 		04C3D9502B10A7F3001C28D9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04C3D94F2B10A7F3001C28D9 /* GoogleService-Info.plist */; };
+		04D12D632B1315E5009DEE6D /* CookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D12D622B1315E5009DEE6D /* CookView.swift */; };
 		04DEF6B82B105BEF00FDDA2C /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04DEF6B72B105BEF00FDDA2C /* Color.xcassets */; };
 		04DEF6BD2B105BFF00FDDA2C /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DEF6BA2B105BFF00FDDA2C /* View.swift */; };
 		04DEF6BE2B105BFF00FDDA2C /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DEF6BB2B105BFF00FDDA2C /* String.swift */; };
@@ -68,6 +69,7 @@
 		04C3D8D42B1057EE001C28D9 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		04C3D8D72B1057EE001C28D9 /* IM110CYUT.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IM110CYUT.xcdatamodel; sourceTree = "<group>"; };
 		04C3D94F2B10A7F3001C28D9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		04D12D622B1315E5009DEE6D /* CookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookView.swift; sourceTree = "<group>"; };
 		04DEF6B72B105BEF00FDDA2C /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		04DEF6BA2B105BFF00FDDA2C /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		04DEF6BB2B105BFF00FDDA2C /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				04DEF6DB2B105C8200FDDA2C /* BMIView.swift */,
+				04D12D622B1315E5009DEE6D /* CookView.swift */,
 				04DEF6DD2B105C8700FDDA2C /* ContentView.swift */,
 				04DEF6DF2B105C8D00FDDA2C /* DynamicView.swift */,
 				04DEF6E12B105C9D00FDDA2C /* ForgePasswordView.swift */,
@@ -356,6 +359,7 @@
 				04DEF6FD2B105EDA00FDDA2C /* HomeView.swift in Sources */,
 				04DEF6C32B105C0D00FDDA2C /* Recipe.swift in Sources */,
 				04DEF6EA2B105CB900FDDA2C /* MyView.swift in Sources */,
+				04D12D632B1315E5009DEE6D /* CookView.swift in Sources */,
 				04DEF6FA2B105EAF00FDDA2C /* TagButton.swift in Sources */,
 				04DEF6D12B105C1800FDDA2C /* Authentication.swift in Sources */,
 				04DEF6D52B105C1800FDDA2C /* Forum.swift in Sources */,

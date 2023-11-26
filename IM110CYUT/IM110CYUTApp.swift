@@ -49,8 +49,6 @@ struct IM110CYUTApp: App {
 //                .environment(.managedObjectContext, persistenceController.container.viewContext)
                 //提供環境User初始化
                 .environmentObject(User())
-                //固定深色模式
-                .preferredColorScheme(.dark)
         }
     }
 }
