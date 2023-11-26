@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0422F6F62B134DC9001109F8 /* AdjustView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0422F6F52B134DC9001109F8 /* AdjustView.swift */; };
 		048D11A82B10745800F57403 /* PlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048D11A72B10745800F57403 /* PlanView.swift */; };
 		048D11AA2B10748D00F57403 /* ShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048D11A92B10748D00F57403 /* ShopView.swift */; };
 		04C3D8CC2B1057ED001C28D9 /* IM110CYUTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C3D8CB2B1057ED001C28D9 /* IM110CYUTApp.swift */; };
@@ -60,6 +61,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0422F6F52B134DC9001109F8 /* AdjustView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjustView.swift; sourceTree = "<group>"; };
 		048D11A72B10745800F57403 /* PlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanView.swift; sourceTree = "<group>"; };
 		048D11A92B10748D00F57403 /* ShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopView.swift; sourceTree = "<group>"; };
 		04C3D8C82B1057ED001C28D9 /* IM110CYUT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IM110CYUT.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -214,6 +216,7 @@
 		04DEF6DA2B105C6700FDDA2C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0422F6F52B134DC9001109F8 /* AdjustView.swift */,
 				04DEF6DB2B105C8200FDDA2C /* BMIView.swift */,
 				04D12D622B1315E5009DEE6D /* CookView.swift */,
 				04DEF6DD2B105C8700FDDA2C /* ContentView.swift */,
@@ -363,6 +366,7 @@
 				04DEF6FD2B105EDA00FDDA2C /* HomeView.swift in Sources */,
 				04DEF6C32B105C0D00FDDA2C /* Recipe.swift in Sources */,
 				04DEF6EA2B105CB900FDDA2C /* MyView.swift in Sources */,
+				0422F6F62B134DC9001109F8 /* AdjustView.swift in Sources */,
 				04D12D632B1315E5009DEE6D /* CookView.swift in Sources */,
 				04DEF6FA2B105EAF00FDDA2C /* TagButton.swift in Sources */,
 				04DEF6D12B105C1800FDDA2C /* Authentication.swift in Sources */,
