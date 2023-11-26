@@ -1,6 +1,22 @@
 import SwiftUI
 import Charts
 
+class BMIRecordViewModel: ObservableObject {
+    @Published var bmiRecords: [BMIRecord]
+    
+    init(bmiRecords: [BMIRecord] = []) {
+        self.bmiRecords = bmiRecords
+    }
+}
+
+class TemperatureSensorViewModel: ObservableObject {
+    @Published var allSensors: [TemperatureSensor]
+    
+    init(allSensors: [TemperatureSensor] = []) {
+        self.allSensors = allSensors
+    }
+}
+
 struct BMIRecord: Identifiable {
     var id = UUID()
     var height: Double
@@ -34,7 +50,10 @@ private func formattedDate(_ date: Date) -> String {
 struct BMIView: View {
     @State private var height: String = ""
     @State private var weight: String = ""
-    @State private var bmiRecords: [BMIRecord] = []
+    
+    @ObservedObject private var bmiRecordViewModel = BMIRecordViewModel()
+    @ObservedObject private var temperatureSensorViewModel = TemperatureSensorViewModel(allSensors: [TemperatureSensor(id: "BMI", records: [])])
+    
     @State private var isShowingList: Bool = false
 
     var body: some View {
@@ -42,7 +61,7 @@ struct BMIView: View {
             VStack {
                 ScrollView(.horizontal) {
                     HStack(spacing: 30) {
-                        Chart(allSensors) { sensor in
+                        Chart(temperatureSensorViewModel.allSensors) { sensor in
                             let groupedRecords = Dictionary(grouping: sensor.records, by: { formattedDate($0.date) })
                             let latestRecords = groupedRecords.mapValues { $0.last! }
 
@@ -69,6 +88,7 @@ struct BMIView: View {
                             .symbolSize(100)
                         }
                         .chartForegroundStyleScale(["BMI": .orange])
+                      
                         .frame(width: 350, height: 200)
                     }
                     .padding()
@@ -105,13 +125,13 @@ struct BMIView: View {
                     Button(action: {
                         if let heightValue = Double(height), let weightValue = Double(weight) {
                             let newRecord = BMIRecord(height: heightValue, weight: weightValue)
-                            bmiRecords.append(newRecord)
+                            bmiRecordViewModel.bmiRecords.append(newRecord)
 
-                            if let existingSensorIndex = allSensors.firstIndex(where: { $0.id == "BMI" }) {
-                                allSensors[existingSensorIndex].records.append(newRecord)
+                            if let existingSensorIndex = temperatureSensorViewModel.allSensors.firstIndex(where: { $0.id == "BMI" }) {
+                                temperatureSensorViewModel.allSensors[existingSensorIndex].records.append(newRecord)
                             } else {
                                 let newSensor = TemperatureSensor(id: "BMI", records: [newRecord])
-                                allSensors.append(newSensor)
+                                temperatureSensorViewModel.allSensors.append(newSensor)
                             }
 
                             height = ""
@@ -141,7 +161,7 @@ struct BMIView: View {
                         }
                     }
                     .sheet(isPresented: $isShowingList) {
-                        BMIRecordsListView(records: $bmiRecords)
+                        BMIRecordsListView(records: $bmiRecordViewModel.bmiRecords, temperatureSensorViewModel: temperatureSensorViewModel)
                     }
                 }
             }
@@ -151,6 +171,12 @@ struct BMIView: View {
 
 struct BMIRecordsListView: View {
     @Binding var records: [BMIRecord]
+    @ObservedObject var temperatureSensorViewModel: TemperatureSensorViewModel
+    
+    init(records: Binding<[BMIRecord]>, temperatureSensorViewModel: TemperatureSensorViewModel) {
+        self._records = records
+        self.temperatureSensorViewModel = temperatureSensorViewModel
+    }
 
     var body: some View {
         NavigationView {
@@ -170,10 +196,15 @@ struct BMIRecordsListView: View {
             }
         }
     }
-    
-    //刪除
+
+    // 刪除
     private func deleteRecord(at offsets: IndexSet) {
         records.remove(atOffsets: offsets)
+        
+        // 更新TemperatureSensor的records
+        if let sensorIndex = temperatureSensorViewModel.allSensors.firstIndex(where: { $0.id == "BMI" }) {
+            temperatureSensorViewModel.allSensors[sensorIndex].records = records
+        }
     }
 }
 
