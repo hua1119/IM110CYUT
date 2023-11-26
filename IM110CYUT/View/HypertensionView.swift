@@ -75,56 +75,44 @@ struct HypertensionView: View
                     }
                     .offset(x:10)
                 }
-                GeometryReader
+                    ScrollView(.horizontal)
                 {
-                    geometry in
-                    ScrollView(.horizontal, showsIndicators: false)
-                    {
-                        ScrollViewReader
+                    HStack(spacing: 30) {
+                        Chart(HypertensionallSensors)
                         {
-                            scrollViewProxy in
-                            Chart(HypertensionallSensors)
+                            sensor in
+                            ForEach(chartData)
                             {
-                                sensor in
-                                ForEach(chartData)
+                                record in
+                                LineMark(
+                                    x: .value("Hour", formattedDate(record.date)),
+                                    y: .value("Value", record.hypertension)
+                                )
+                                .lineStyle(.init(lineWidth: 5))
+                                PointMark(
+                                    x: .value("Hour", formattedDate(record.date)),
+                                    y: .value("Value", record.hypertension)
+                                )
+                                .annotation(position: .top)
                                 {
-                                    record in
-                                    LineMark(
-                                        x: .value("Hour", formattedDate(record.date)),
-                                        y: .value("Value", record.hypertension)
-                                    )
-                                    .lineStyle(.init(lineWidth: 5))
-                                    PointMark(
-                                        x: .value("Hour", formattedDate(record.date)),
-                                        y: .value("Value", record.hypertension)
-                                    )
-                                    .annotation(position: .top)
-                                    {
-                                        Text("\(record.hypertension, specifier: "%.2f")")
-                                            .font(.system(size: 12))
-                                            .foregroundColor(Color("textcolor"))
-                                    }
-                                }
-                                .foregroundStyle(by: .value("Location", sensor.id))
-                                .symbol(by: .value("Sensor Location", sensor.id))
-                                .symbolSize(100)
-                            }
-                            .chartForegroundStyleScale([
-                                "血壓值": .orange
-                            ])
-                            .frame(width: 350, height: 200)
-                            .onAppear
-                            {
-                                if scrollToBottom
-                                {
-                                    scrollViewProxy.scrollTo(chartData.count - 1)
-                                    scrollToBottom = false
+                                    Text("\(record.hypertension, specifier: "%.2f")")
+                                        .font(.system(size: 12))
+                                        .foregroundColor(Color("textcolor"))
                                 }
                             }
+                            .foregroundStyle(by: .value("Location", sensor.id))
+                            .symbol(by: .value("Sensor Location", sensor.id))
+                            .symbolSize(100)
                         }
+                        .chartForegroundStyleScale([
+                            "血壓值": .orange
+                        ])
+                        .frame(width: 350, height: 200)
+                        
                     }
-                    .padding()
                 }
+                    .padding()
+                
                 
                 VStack
                 {
@@ -186,11 +174,11 @@ struct HypertensionView: View
                         .padding()
                         .offset(y: 10)
                     }
+                    .onTapGesture {
+                        self.dismissKeyboard()
+                    }
                 }
-                .padding(.bottom, 130)
-                .onTapGesture {
-                    self.dismissKeyboard()
-                }
+                .offset(y: 10)
             }
             .sheet(isPresented: $isShowingList)
             {
@@ -206,6 +194,7 @@ struct HypertensionView: View
                 )
             }
         }
+        .offset(y: -46)
     }
 }
 

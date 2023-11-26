@@ -78,14 +78,8 @@ struct HyperglycemiaView: View
                     }
                     .offset(x:10)
                 }
-                GeometryReader
-                {
-                    geometry in
-                    ScrollView(.horizontal, showsIndicators: false)
+                    ScrollView(.horizontal)
                     {
-                        ScrollViewReader
-                        {
-                            scrollViewProxy in
                             Chart(HyperglycemiaallSensors)
                             {
                                 sensor in
@@ -117,18 +111,8 @@ struct HyperglycemiaView: View
                                 "血糖值": .orange
                             ])
                             .frame(width: 350, height: 200)
-                            .onAppear
-                            {
-                                if scrollToBottom
-                                {
-                                    scrollViewProxy.scrollTo(chartData.count - 1)
-                                    scrollToBottom = false
-                                }
-                            }
-                        }
                     }
                     .padding()
-                }
                 VStack
                 {
                     Text("血糖值輸入")
@@ -196,7 +180,7 @@ struct HyperglycemiaView: View
                         self.dismissKeyboard()
                     }
                 }
-                .offset(y: -70)
+                .offset(y: 10)
             }
             .sheet(isPresented: $isShowingList)
             {
@@ -211,6 +195,7 @@ struct HyperglycemiaView: View
                 )
             }
         }
+        .offset(y: -46)
     }
 }
 

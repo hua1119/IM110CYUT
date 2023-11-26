@@ -77,9 +77,7 @@ struct BMIView: View {
                     }
                     .offset(x:10)
                 }
-
                 ScrollView(.horizontal) {
-                    
                     HStack(spacing: 30) {
                         Chart(temperatureSensorViewModel.allSensors) { sensor in
                             let groupedRecords = Dictionary(grouping: sensor.records, by: { formattedDate($0.date) })
@@ -175,7 +173,7 @@ struct BMIView: View {
                 .onTapGesture {
                     self.dismissKeyboard()
                 }
-                .padding(.bottom, 80)
+                .padding(.bottom, 20)
             }
         }
     }

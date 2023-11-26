@@ -80,14 +80,8 @@ struct HyperlipidemiaView: View
                     }
                     .offset(x:10)
                 }
-                GeometryReader
-                {
-                    geometry in
-                    ScrollView(.horizontal, showsIndicators: false)
+                    ScrollView(.horizontal)
                     {
-                        ScrollViewReader
-                        {
-                            scrollViewProxy in
                             Chart(HyperlipidemiaallSensors)
                             {
                                 sensor in
@@ -120,18 +114,8 @@ struct HyperlipidemiaView: View
                                 "血脂值": .orange
                             ])
                             .frame(width: 350, height: 200)
-                            .onAppear
-                            {
-                                if scrollToBottom
-                                {
-                                    scrollViewProxy.scrollTo(chartData.count - 1)
-                                    scrollToBottom = false
-                                }
-                            }
-                        }
                     }
                     .padding()
-                }
                 VStack
                 {
                     //血脂值輸入
@@ -200,7 +184,7 @@ struct HyperlipidemiaView: View
                         self.dismissKeyboard()
                     }
                 }
-                .offset(y: -70)
+                .offset(y: 10)
             }
             .sheet(isPresented: $isShowingList)
             {
@@ -215,6 +199,7 @@ struct HyperlipidemiaView: View
                 )
             }
         }
+        .offset(y: -46)
     }
 }
 
