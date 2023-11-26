@@ -214,14 +214,14 @@ struct SigninView: View
                         }
                     }
                 }
+                .onTapGesture {
+                    self.dismissKeyboard()
+                }
                 .padding(.horizontal, 50)
                 .transition(.opacity)
             }
         }
         //MARK: 結果Alert
-//        .onTapGesture {
-//            self.dismissKeyboard()
-//        }
         .alert(self.result.1, isPresented: self.$result.0)
         {
             Button("完成", role: .cancel)

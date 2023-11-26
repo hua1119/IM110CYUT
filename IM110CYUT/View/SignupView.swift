@@ -441,9 +441,9 @@ struct SignupView: View
             
         }
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
-//        .onTapGesture {
-//            self.dismissKeyboard()
-//        }
+        .onTapGesture {
+            self.dismissKeyboard()
+        }
         //MARK: 結果Alert
         .alert(self.result.1, isPresented: self.$result.0)
         {
