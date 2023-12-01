@@ -53,7 +53,7 @@ struct HyperglycemiaView: View
     
     var body: some View
     {
-        NavigationView
+        NavigationStack
         {
             VStack
             {
@@ -65,7 +65,8 @@ struct HyperglycemiaView: View
                         .font(.system(size: 33, weight: .bold))
                         .offset(x:-60)
 
-                    Button(action: {
+                    Button(action: 
+                            {
                         isShowingList.toggle()
                     }) {
                         Image(systemName: "list.dash")
@@ -187,7 +188,8 @@ struct HyperglycemiaView: View
                 HyperglycemiaRecordsListView(records: $chartData)
             }
             //超過上限警告
-            .alert(isPresented: $showAlert) {
+            .alert(isPresented: $showAlert)
+            {
                 Alert(
                     title: Text("警告"),
                     message: Text("輸入的血糖值最高為300，請重新輸入。"),
@@ -206,7 +208,7 @@ struct HyperglycemiaRecordsListView: View
     
     var body: some View
     {
-        NavigationView
+        NavigationStack
         {
             List
             {

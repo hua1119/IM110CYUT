@@ -7,28 +7,35 @@
 import SwiftUI
 
 // Recipe.swift
-struct Recipe {
+struct Recipe
+{
     var name: String
     var ingredients: [Ingredient]
 }
 
-struct Ingredient {
+struct Ingredient
+{
     var name: String
     var quantity: String
 }
 
 // ShoppingList.swift
-struct ShoppingList {
+struct ShoppingList 
+{
     var days: Int
     var recipes: [Recipe]
 }
 
-struct IngredientRow: View {
+struct IngredientRow: View 
+{
     var ingredient: Ingredient
     
-    var body: some View {
-        HStack {
-            VStack(alignment: .leading) {
+    var body: some View 
+    {
+        HStack
+        {
+            VStack(alignment: .leading)
+            {
                 Text("食材名稱: \(ingredient.name)")
                 Text("數量: \(ingredient.quantity)")
             }
@@ -39,27 +46,34 @@ struct IngredientRow: View {
     }
 }
 
-    struct RecipeView: View {
+    struct RecipeView: View 
+{
         @Binding var recipes: [Recipe]
         var onRecipeSelected: (Recipe) -> Void
         var onDeleteRecipe: (Recipe) -> Void  // 新增用於刪除整個食譜的回調函數
 
-        var body: some View {
-            if recipes.isEmpty {
+        var body: some View 
+        {
+            Text("採購")
+            if recipes.isEmpty
+            {
                 Text("目前無採買項目")
             } else {
-                List {
+                List 
+                {
                     ForEach(Array(recipes.enumerated()), id: \.element.name) { index, recipe in
                         ForEach(recipe.ingredients.indices, id: \.self) { ingredientIndex in
                             HStack {
-                                VStack(alignment: .leading) {
+                                VStack(alignment: .leading) 
+                                {
                                     Text("食材名稱: \(recipes[index].ingredients[ingredientIndex].name)")
                                     Text("數量: \(recipes[index].ingredients[ingredientIndex].quantity)")
                                 }
                                 Spacer()
                                 Image(systemName: "minus.circle")
                                     .foregroundColor(.red)
-                                    .onTapGesture {
+                                    .onTapGesture
+                                {
                                         // 刪除單個食材
                                         recipes[index].ingredients.remove(at: ingredientIndex)
                                         
@@ -70,16 +84,19 @@ struct IngredientRow: View {
                                     }
                             }
                         }
-                        .onDelete { indices in
+                        .onDelete 
+                        { indices in
                             // 實現食材刪除邏輯，使用 indices
                             let originalIndices = indices.map { $0 }
                             
-                            for originalIndex in originalIndices {
+                            for originalIndex in originalIndices 
+                            {
                                 recipes[index].ingredients.remove(at: originalIndex)
                             }
 
                             // 檢查食譜的食材數量，如果為零，則刪除整個食譜
-                            if recipes[index].ingredients.isEmpty {
+                            if recipes[index].ingredients.isEmpty 
+                            {
                                 onDeleteRecipe(recipes[index])
                             }
                         }
@@ -92,13 +109,17 @@ struct IngredientRow: View {
 
 
 
-struct ShopView: View {
+struct ShopView: View
+{
     @State private var selectedRecipe: Recipe?
     @State private var shoppingList: ShoppingList = ShoppingList(days: 7, recipes: recipes)
 
-    var body: some View {
-        NavigationView {
-            VStack {
+    var body: some View 
+    {
+        NavigationStack 
+        {
+            VStack 
+            {
                 RecipeView(recipes: $shoppingList.recipes, onRecipeSelected:
                             { recipe in
                     selectedRecipe = recipe
@@ -125,8 +146,10 @@ let recipes: [Recipe] = [
     // Add more recipes as needed
 ]
 
-struct ShopView_Previews: PreviewProvider {
-    static var previews: some View {
+struct ShopView_Previews: PreviewProvider
+{
+    static var previews: some View 
+    {
         ShopView()
     }
 }

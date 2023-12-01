@@ -97,9 +97,7 @@ struct MyView: View
                                     }
                                 }
                             }
-                        }
-                        else
-                        {
+                        }else{
                             PhotosPicker(selection: self.$pickImage, matching: .any(of: [.images, .livePhotos]))
                             {
                                 Circle()
@@ -279,7 +277,6 @@ struct MyView: View
                     }
                     .listStyle(.plain)
                     .background(.clear)
-                    
                     //設定背景為白色，不要是灰色
                     .listStyle(InsetListStyle())
                     //控制深淺模式切換
@@ -296,23 +293,30 @@ struct MyView: View
 }
 
 
-struct NameSheetView: View {
+struct NameSheetView: View 
+{
     @Binding var name: String
     @Binding var isPresented: Bool
     @State private var newName = ""
     
-    var body: some View {
-        NavigationView {
-            Form {
-                Section(header: Text("更改姓名")) {
+    var body: some View 
+    {
+        NavigationStack 
+        {
+            Form 
+            {
+                Section(header: Text("更改姓名")) 
+                {
                     TextField("新的姓名", text: $newName)
                 }
             }
             .navigationBarItems(
-                leading: Button("取消") {
+                leading: Button("取消") 
+                {
                     isPresented = false
                 },
-                trailing: Button("保存") {
+                trailing: Button("保存") 
+                {
                     name = newName
                     isPresented = false
                 }

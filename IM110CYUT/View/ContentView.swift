@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct ContentView: View 
+{
     //存取登入狀態
     @AppStorage("signin") private var signin: Bool=false
     // 切換深淺模式
@@ -21,8 +22,10 @@ struct ContentView: View {
     //    @StateObject private var cameraManagerViewModel = CameraManagerViewModel()
         
     
-    var body: some View {
-        NavigationStack {
+    var body: some View 
+    {
+        NavigationStack 
+        {
             //            //已登入
             //            if(self.logIn) {
             //                HomeView().transition(.opacity)//原ForumView_231020

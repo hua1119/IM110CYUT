@@ -16,7 +16,7 @@ struct TrianglePointer: View
         Triangle()
             .fill(Color.red)
             .frame(width: 20, height: 50)
-            // 調整三角形指針的位置
+        // 調整三角形指針的位置
             .offset(x: 0, y: 580)
             .rotationEffect(.degrees(180))
     }
@@ -29,25 +29,18 @@ struct SpinnerView: View
 {
     // 存儲轉盤的當前角度，在開始轉的時候此數字會增加
     @State private var rotationAngle: Double = 1.0
-
     // 控制是否應該重置轉盤的狀態
     @State private var shouldResetRotation = false
-    
     // 指示立即重置轉盤的狀態，初始設置為 false，當設置為 true 時，立即觸發轉盤的重置
     @State private var resetRotationNow = false
-    
     // 用於控制旋轉按鈕是否可用，初始設置為 true，當按下旋轉按鈕時，設置為 false 以禁用按鈕
     @State private var isButtonEnabled = true
-    
     // 用於控制彈出視窗是否顯示
     @State private var isShowingAlert = false
-    
     // 用於控制轉盤是否正在旋轉，在開始旋轉時設置為true
     @State private var isRotating = false
-    
     // 用於存儲選定的食物名稱，初始設置為空字符串，當轉盤選定一個食物時，它會被更新為該食物的名稱
     @State private var selectedFood = ""
-    
     
     // 用來判斷跟存放目前有幾項食物
     let foodNames = ["披薩", "漢堡", "壽司", "義大利麵", "沙拉", "牛排", "吐司", "冰淇淋", "魚排", "麵線", "寂寞", "蛋糕"]
@@ -68,7 +61,8 @@ struct SpinnerView: View
             // 這段是定義指令，且無法更改位置，會影響版面
             OrangeWhiteSpinner(isRotating: $isRotating, stopRotation: $isRotating, selectedFood: $selectedFood, rotationAngle: $rotationAngle)
             
-            Button(action: { isButtonEnabled = false; startRotation() }) {
+            Button(action: { isButtonEnabled = false; startRotation() })
+            {
                 Text("旋轉")
                     .font(.headline)
                     .foregroundColor(.white)
@@ -80,7 +74,6 @@ struct SpinnerView: View
             .disabled(!isButtonEnabled)
             .padding()
         }
-        
         
         // 彈出視窗
         .alert(isPresented: $isShowingAlert)
@@ -145,7 +138,6 @@ struct SpinnerView: View
             return "Unknown"
         }
     }
-    
 }
 
 // MARK: 動畫內容程式
@@ -243,7 +235,6 @@ struct OrangeWhiteSpinner: View
                     Text("披薩")
                         .rotationEffect(.degrees(165))
                         .offset(x: 40, y: 150)
-                    
                 }
                 Text("漢堡")
                     .rotationEffect(.degrees(140))
@@ -257,9 +248,7 @@ struct OrangeWhiteSpinner: View
             .foregroundColor(Color.black)
             .rotationEffect(.degrees(isRotating ? rotationAngle : 0))
         }
-        
     }
-    
 }
 
 // MARK: 定義圓型樣式

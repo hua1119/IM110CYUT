@@ -55,7 +55,7 @@ struct HyperlipidemiaView: View
     
     var body: some View
     {
-        NavigationView
+        NavigationStack
         {
             VStack
             {
@@ -67,7 +67,8 @@ struct HyperlipidemiaView: View
                         .font(.system(size: 33, weight: .bold))
                         .offset(x:-60)
 
-                    Button(action: {
+                    Button(action: 
+                            {
                         isShowingList.toggle()
                     }) {
                         Image(systemName: "list.dash")
@@ -191,7 +192,8 @@ struct HyperlipidemiaView: View
                 HyperlipidemiaRecordsListView(records: $chartData)
             }
             //超過上限警告
-            .alert(isPresented: $showAlert) {
+            .alert(isPresented: $showAlert) 
+            {
                 Alert(
                     title: Text("警告"),
                     message: Text("輸入的血脂值最高為500，請重新輸入。"),
@@ -210,7 +212,7 @@ struct HyperlipidemiaRecordsListView: View
     
     var body: some View
     {
-        NavigationView
+        NavigationStack
         {
             List
             {
@@ -224,7 +226,8 @@ struct HyperlipidemiaRecordsListView: View
                 .onDelete(perform: deleteRecord)
             }
             .navigationTitle("血脂紀錄列表")
-            .toolbar {
+            .toolbar 
+            {
                 ToolbarItem(placement: .navigationBarTrailing)
                 {
                     EditButton()

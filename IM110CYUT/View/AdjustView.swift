@@ -7,27 +7,33 @@
 
 import SwiftUI
 
-struct CustomRecipe {
+struct CustomRecipe 
+{
     var name: String
     var ingredients: [CustomIngredient]
 }
 
-struct CustomIngredient {
+struct CustomIngredient 
+{
     var name: String
     var quantity: String
 }
 
-struct ShoppingListView {
+struct ShoppingListView 
+{
     var days: Int
     var recipes: [CustomRecipe]
 }
 
-struct IngredientRowView: View {
+struct IngredientRowView: View 
+{
     var ingredient: CustomIngredient
     
-    var body: some View {
+    var body: some View 
+    {
         HStack {
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading) 
+            {
                 Text("食材名稱: \(ingredient.name)")
                 Text("數量: \(ingredient.quantity)")
             }
@@ -38,20 +44,27 @@ struct IngredientRowView: View {
     }
 }
 
-struct RecipeItemView: View {
+struct RecipeItemView: View 
+{
     @Binding var recipes: [CustomRecipe]
     var onRecipeSelected: (CustomRecipe) -> Void
 //    var onDeleteRecipe: (CustomRecipe) -> Void
     
-    var body: some View {
-        if recipes.isEmpty {
+    var body: some View
+    {
+        if recipes.isEmpty 
+        {
             Text("目前無採買項目")
         } else {
-            List {
+            List 
+            {
                 ForEach(Array(recipes.enumerated()), id: \.element.name) { index, recipe in
-                    ForEach(recipe.ingredients.indices, id: \.self) { ingredientIndex in
-                        HStack {
-                            VStack(alignment: .leading) {
+                    ForEach(recipe.ingredients.indices, id: \.self)
+                    { ingredientIndex in
+                        HStack 
+                        {
+                            VStack(alignment: .leading) 
+                            {
                                 Text("料理名稱: \(recipes[index].ingredients[ingredientIndex].name)")
                                 Text("數量: \(recipes[index].ingredients[ingredientIndex].quantity)")
                             }
@@ -69,7 +82,8 @@ struct RecipeItemView: View {
 //                                }
                         }
                     }
-                    .onMove { indices, newOffset in
+                    .onMove 
+                    { indices, newOffset in
                         // 處理食材重新排序
                         recipes[index].ingredients.move(fromOffsets: indices, toOffset: newOffset)
                     }
@@ -92,13 +106,17 @@ struct RecipeItemView: View {
     }
 }
 
-struct AdjustView: View {
+struct AdjustView: View 
+{
     @State private var selectedRecipe: CustomRecipe?
     @State private var shoppingList: ShoppingListView = ShoppingListView(days: 7, recipes: customRecipes)
 
-    var body: some View {
-        NavigationStack {
-            VStack {
+    var body: some View 
+    {
+        NavigationStack 
+        {
+            VStack 
+            {
                 RecipeItemView(recipes: $shoppingList.recipes, onRecipeSelected:
                             { recipe in
                     selectedRecipe = recipe
@@ -119,11 +137,15 @@ struct AdjustView: View {
     }
 
     // 添加相同食譜時進行檢查和疊加
-    func addCustomRecipe(_ newRecipe: CustomRecipe) {
-        if let existingIndex = shoppingList.recipes.firstIndex(where: { $0.name == newRecipe.name }) {
+    func addCustomRecipe(_ newRecipe: CustomRecipe) 
+    {
+        if let existingIndex = shoppingList.recipes.firstIndex(where: { $0.name == newRecipe.name }) 
+        {
             // 食譜已存在，將其食材進行疊加
-            for newIngredient in newRecipe.ingredients {
-                if let existingIngredientIndex = shoppingList.recipes[existingIndex].ingredients.firstIndex(where: { $0.name == newIngredient.name }) {
+            for newIngredient in newRecipe.ingredients 
+            {
+                if let existingIngredientIndex = shoppingList.recipes[existingIndex].ingredients.firstIndex(where: { $0.name == newIngredient.name }) 
+                {
                     // 食材已存在，進行數量疊加
                     shoppingList.recipes[existingIndex].ingredients[existingIngredientIndex].quantity += newIngredient.quantity
                 } else {
@@ -144,8 +166,10 @@ let customRecipes: [CustomRecipe] = [
     CustomRecipe(name: "水煮魚", ingredients: [CustomIngredient(name: "魚片", quantity: "500克"), CustomIngredient(name: "花椒", quantity: "适量"), CustomIngredient(name: "薑", quantity: "适量")]),
 ]
 
-struct AdjustView_Previews: PreviewProvider {
-    static var previews: some View {
+struct AdjustView_Previews: PreviewProvider 
+{
+    static var previews: some View 
+    {
         AdjustView()
     }
 }

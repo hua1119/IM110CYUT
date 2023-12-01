@@ -12,7 +12,8 @@ import FirebaseCore
 
 //MARK: Firebase
 //初始化啟動Firebase
-class AppDelegate: NSObject, UIApplicationDelegate {
+class AppDelegate: NSObject, UIApplicationDelegate 
+{
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
@@ -26,7 +27,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 //MARK: Main App
 @main
-struct IM110CYUTApp: App {
+struct IM110CYUTApp: App 
+{
     //提供所有View使用的User結構
     @EnvironmentObject var user: User
 
@@ -39,8 +41,10 @@ struct IM110CYUTApp: App {
     //CoreData
     let persistenceController = PersistenceController.shared
 
-    var body: some Scene {
-        WindowGroup {
+    var body: some Scene 
+    {
+        WindowGroup 
+        {
             SigninView()
 //            CameraContentView(cameraManagerViewModel: cameraManagerViewModel)
 //           ContentView()

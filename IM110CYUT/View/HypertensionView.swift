@@ -21,7 +21,7 @@ struct HypertensionRecord: Identifiable
 
 // 包含ID和高血壓相關紀錄數組
 struct HypertensionTemperatureSensor: Identifiable
-    {
+{
     var id: String
     var records: [HypertensionRecord]
 }
@@ -61,8 +61,9 @@ struct HypertensionView: View
                         .frame(width: 300, height: 50)
                         .font(.system(size: 33, weight: .bold))
                         .offset(x:-60)
-
-                    Button(action: {
+                    
+                    Button(action:
+                            {
                         isShowingList.toggle()
                     }) {
                         Image(systemName: "list.dash")
@@ -75,20 +76,21 @@ struct HypertensionView: View
                     }
                     .offset(x:10)
                 }
-                    ScrollView(.horizontal)
+                ScrollView(.horizontal)
                 {
-                    HStack(spacing: 30) {
-                        Chart(HypertensionallSensors)
-                        {
-                            sensor in
-                            ForEach(chartData)
-                            {
-                                record in
+                    HStack(spacing: 30)
+                    {
+                        Chart(HypertensionallSensors) { sensor in
+                            let groupedRecords = Dictionary(grouping: chartData, by: { formattedDate($0.date) })
+                            let latestRecords = groupedRecords.mapValues { $0.last! }
+                            
+                            ForEach(latestRecords.sorted(by: { $0.key < $1.key }), id: \.key) { date, record in
                                 LineMark(
                                     x: .value("Hour", formattedDate(record.date)),
                                     y: .value("Value", record.hypertension)
                                 )
                                 .lineStyle(.init(lineWidth: 5))
+                                
                                 PointMark(
                                     x: .value("Hour", formattedDate(record.date)),
                                     y: .value("Value", record.hypertension)
@@ -111,7 +113,7 @@ struct HypertensionView: View
                         
                     }
                 }
-                    .padding()
+                .padding()
                 
                 
                 VStack
@@ -148,19 +150,18 @@ struct HypertensionView: View
                                 {
                             if let hypertensionValue = Double(hypertension)
                             {
-                                if hypertensionValue <= upperLimit
-                                {
-                                    let newRecord = HypertensionRecord(hypertension: hypertensionValue)
-                                    chartData.append(newRecord)
-                                    hypertension = ""
-                                    //將標誌設為true，以便滾動到底部
-                                    scrollToBottom = true
+                                let newRecord = HypertensionRecord(hypertension: hypertensionValue)
+                                
+                                if let existingRecordIndex = chartData.lastIndex(where: { $0.date > Date().addingTimeInterval(-6 * 60 * 60) }) {
+                                    chartData[existingRecordIndex] = newRecord
                                 }
                                 else
                                 {
-                                    //用戶輸入的值超過了400，顯示警告
-                                    showAlert = true
+                                    chartData.append(newRecord)
+                                    scrollToBottom = true
                                 }
+                                
+                                hypertension = ""
                             }
                         }) {
                             Text("紀錄血壓")

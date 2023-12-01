@@ -28,14 +28,16 @@ struct SignupView: View
     private func signup() async
     {
         //輸入框有空 || 密碼不相同
-        if(self.information.0.isEmpty || self.information.1.isEmpty || self.information.1 != self.information.2) {
+        if(self.information.0.isEmpty || self.information.1.isEmpty || self.information.1 != self.information.2) 
+        {
             self.result.1="1.請確保沒有空白字段。\n2. 請確保您的密碼相同。"
             self.result.0.toggle()
         }
         else
         {
             //Authentication
-            Authentication().signup(account: self.information.0, password: self.information.1) {(_, error) in
+            Authentication().signup(account: self.information.0, password: self.information.1) 
+            {(_, error) in
                 //註冊失敗
                 if let error=error
                 {
@@ -302,7 +304,6 @@ struct SignupView: View
             //MARK: 輸入身高 體重
             VStack(spacing: 60)
             {
-                
                 Text("請輸入您的身高(CM)和體重(KG)")
                     .font(.title2)
                     .foregroundColor(Color(red: 0.828, green: 0.249, blue: 0.115))

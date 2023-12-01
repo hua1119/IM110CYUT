@@ -73,8 +73,7 @@ struct RealTime
                         //查詢失敗 -> (空值, 錯誤資訊)
                         completion(nil, error)
                     }
-            } else if let error=error
-            {
+            } else if let error=error{
                 //查詢失敗 -> (空值, 錯誤資訊)
                 completion(nil, error)
             }
@@ -107,8 +106,7 @@ struct RealTime
                             completion(describe, nil)
                         }
                     }
-                } else if let error=error
-                {
+                } else if let error=error{
                     //查詢失敗 -> (空值, 錯誤資訊)
                     completion(nil, error)
                 }
@@ -131,8 +129,7 @@ struct RealTime
                 {
                     print("Realtime sign up error: \(error.localizedDescription)")
                 //寫入成功
-                } else
-                {
+                } else{
                     print("Realtime sign up success.")
                 }
             }

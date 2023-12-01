@@ -19,7 +19,7 @@ struct CcontentView: View
 
     var body: some View
     {
-        NavigationView
+        NavigationStack
         {
             List
             {

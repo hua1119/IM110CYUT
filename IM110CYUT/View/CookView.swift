@@ -7,14 +7,16 @@
 
 import SwiftUI
 
-struct Plan {
+struct Plan
+{
     var day: Int
     var title: String
 }
 
-struct CookView: View {
+struct CookView: View
+{
     @State private var fakePlans: [Plan] = []
-
+    
     init() {
         let numberOfDishes = (1...7).map { _ in Int.random(in: 1...3) }
         var plans: [Plan] = []
@@ -25,21 +27,27 @@ struct CookView: View {
         }
         _fakePlans = State(initialValue: plans)
     }
-
-    var body: some View {
-        NavigationStack {
-            VStack {
-                HStack {
+    var body: some View
+    {
+        NavigationStack
+        {
+            VStack
+            {
+                Text("烹飪")
+                HStack
+                {
                     Spacer()
-                    NavigationLink(destination: AdjustView()) {
+                    NavigationLink(destination: AdjustView())
+                    {
                         Text("調整計畫")
                             .padding()
                     }
                 }
-
-                List {
+                List
+                {
                     ForEach(0..<7, id: \.self) { dayIndex in
-                        VStack(alignment: .leading, spacing: 10) {
+                        VStack(alignment: .leading, spacing: 10)
+                        {
                             let currentDate = Calendar.current.dateComponents([.month, .day], from: Date())
                             if let firstPlan = fakePlans.first(where: { $0.day == dayIndex + 1 }) {
                                 if let targetDate = Calendar.current.date(byAdding: .day, value: dayIndex, to: Date()) {
@@ -49,8 +57,8 @@ struct CookView: View {
                                         .padding(.bottom, 5)
                                 }
                             }
-
-                            ForEach(fakePlans.filter { $0.day == dayIndex + 1 }, id: \.day) { plan in
+                            ForEach(fakePlans.filter { $0.day == dayIndex + 1 }, id: \.day)
+                            { plan in
                                 Text("- \(plan.title)")
                                     .padding(.leading, 20)
                             }
@@ -59,18 +67,21 @@ struct CookView: View {
                 }
                 .padding(.top, -20)
                 .scrollIndicators(.hidden)
-
-                NavigationLink(destination: NowView()) {
-                                    Text("立即煮")
-                                        .padding()
-                                }
+                
+                NavigationLink(destination: NowView())
+                {
+                    Text("立即煮")
+                        .padding()
+                }
             }
         }
     }
 }
 
-struct CookView_Previews: PreviewProvider {
-    static var previews: some View {
+struct CookView_Previews: PreviewProvider 
+{
+    static var previews: some View 
+    {
         CookView()
     }
 }

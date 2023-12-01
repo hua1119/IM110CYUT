@@ -22,7 +22,8 @@ struct Authentication
     
     //MARK: 刪除
     //刪除當前使用者在Authentication的資料
-    func delete() {
+    func delete() 
+    {
         //確認當前使用者有登入
         if let user=self.authentication.currentUser
         {
