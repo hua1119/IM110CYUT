@@ -60,12 +60,10 @@ struct CookView: View {
                 .padding(.top, -20)
                 .scrollIndicators(.hidden)
 
-                Button(action: {
-                    // 實現 "立即煮" 功能
-                }) {
-                    Text("立即煮")
-                        .padding()
-                }
+                NavigationLink(destination: NowView()) {
+                                    Text("立即煮")
+                                        .padding()
+                                }
             }
         }
     }
