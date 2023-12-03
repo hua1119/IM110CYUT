@@ -61,6 +61,8 @@ struct BMIView: View
     @ObservedObject private var temperatureSensorViewModel = TemperatureSensorViewModel(allSensors: [TemperatureSensor(id: "BMI", records: [])])
     
     @State private var isShowingList: Bool = false
+    @State private var isShowingDetailSheet: Bool = false
+    
     
     var body: some View 
     {
@@ -75,7 +77,7 @@ struct BMIView: View
                         .frame(width: 300, height: 50)
                         .font(.system(size: 33, weight: .bold))
                         .offset(x:-60)
-
+                    
                     Button(action: 
                             {
                         isShowingList.toggle()
@@ -198,6 +200,9 @@ struct BMIView: View
                             
                             height = ""
                             weight = ""
+                            
+                            isShowingDetailSheet.toggle()
+                            
                         }
                     }) {
                         Text("計算BMI")
@@ -212,7 +217,17 @@ struct BMIView: View
                     .offset(y: -20)
                     .sheet(isPresented: $isShowingList) 
                     {
-                        BMIRecordsListView(records: $bmiRecordViewModel.bmiRecords, temperatureSensorViewModel: temperatureSensorViewModel)
+                        NavigationStack
+                        {
+                            BMIRecordsListView(records: $bmiRecordViewModel.bmiRecords, temperatureSensorViewModel: temperatureSensorViewModel)
+                        }
+                    }
+                    .sheet(isPresented: $isShowingDetailSheet) 
+                    {
+                        NavigationStack
+                        {
+                            BMIRecordDetailView(record: bmiRecordViewModel.bmiRecords.last ?? BMIRecord(height: 0, weight: 0))
+                        }
                     }
                 }
                 .onTapGesture 
