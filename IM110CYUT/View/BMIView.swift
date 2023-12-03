@@ -234,7 +234,7 @@ struct BMIView: View
                 {
                     self.dismissKeyboard()
                 }
-                .padding(.bottom, 20)
+                .padding(.bottom, 25)
             }
         }
     }

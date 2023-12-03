@@ -222,7 +222,7 @@ struct MyView: View
                             //MARK: 我的最愛
                             HStack
                             {
-                                NavigationLink(destination: MenuView()) {
+                                NavigationLink(destination: FavoriteView()) {
                                     InformationLabel(image: "heart.fill", label: "我的最愛")
                                 }
                             }

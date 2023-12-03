@@ -10,6 +10,7 @@
 		0422F6F62B134DC9001109F8 /* AdjustView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0422F6F52B134DC9001109F8 /* AdjustView.swift */; };
 		048D11A82B10745800F57403 /* PlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048D11A72B10745800F57403 /* PlanView.swift */; };
 		048D11AA2B10748D00F57403 /* ShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048D11A92B10748D00F57403 /* ShopView.swift */; };
+		04962B192B1C640800B51969 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04962B182B1C640800B51969 /* FavoriteView.swift */; };
 		04C3D8CC2B1057ED001C28D9 /* IM110CYUTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C3D8CB2B1057ED001C28D9 /* IM110CYUTApp.swift */; };
 		04C3D8CE2B1057ED001C28D9 /* CcontentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C3D8CD2B1057ED001C28D9 /* CcontentView.swift */; };
 		04C3D8D02B1057EE001C28D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04C3D8CF2B1057EE001C28D9 /* Assets.xcassets */; };
@@ -65,6 +66,7 @@
 		0422F6F52B134DC9001109F8 /* AdjustView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjustView.swift; sourceTree = "<group>"; };
 		048D11A72B10745800F57403 /* PlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanView.swift; sourceTree = "<group>"; };
 		048D11A92B10748D00F57403 /* ShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopView.swift; sourceTree = "<group>"; };
+		04962B182B1C640800B51969 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
 		04C3D8C82B1057ED001C28D9 /* IM110CYUT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IM110CYUT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04C3D8CB2B1057ED001C28D9 /* IM110CYUTApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IM110CYUTApp.swift; sourceTree = "<group>"; };
 		04C3D8CD2B1057ED001C28D9 /* CcontentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CcontentView.swift; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 				04D12D622B1315E5009DEE6D /* CookView.swift */,
 				04DEF6DD2B105C8700FDDA2C /* ContentView.swift */,
 				04DEF6DF2B105C8D00FDDA2C /* DynamicView.swift */,
+				04962B182B1C640800B51969 /* FavoriteView.swift */,
 				04DEF6E12B105C9D00FDDA2C /* ForgePasswordView.swift */,
 				04DEF6FC2B105EDA00FDDA2C /* HomeView.swift */,
 				04DEF6E32B105CAD00FDDA2C /* HypertensionView.swift */,
@@ -344,6 +347,7 @@
 				04DEF6E62B105CB000FDDA2C /* HyperglycemiaView.swift in Sources */,
 				04C3D8CE2B1057ED001C28D9 /* CcontentView.swift in Sources */,
 				04DEF6EC2B105CBC00FDDA2C /* MenuView.swift in Sources */,
+				04962B192B1C640800B51969 /* FavoriteView.swift in Sources */,
 				04DEF6D32B105C1800FDDA2C /* Dynamic.swift in Sources */,
 				04DEF6C42B105C0D00FDDA2C /* ImagePicker.swift in Sources */,
 				04DEF6BD2B105BFF00FDDA2C /* View.swift in Sources */,

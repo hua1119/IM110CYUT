@@ -201,7 +201,7 @@ struct HyperlipidemiaView: View
                 )
             }
         }
-        .offset(y: -46)
+        .offset(y: -98)
     }
 }
 
