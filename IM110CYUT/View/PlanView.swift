@@ -51,14 +51,6 @@ struct PlanView: View
             }
         }
     }
-
-        struct ContentView_Previews: PreviewProvider
-    {
-            static var previews: some View
-            {
-                ContentView()
-            }
-        }
    
     struct FoodSelectionView: View {
         @Binding var isShowingDetail: Bool
@@ -220,7 +212,7 @@ struct PlanView: View
                 // 保存編輯計畫
                 self.presentationMode.wrappedValue.dismiss()
             })
-                NavigationView
+                NavigationStack
             {
                     ScrollView
                 {
@@ -328,14 +320,17 @@ struct PlanView: View
     
     var body: some View
     {
-        NavigationView
+        NavigationStack
         {
-            List
+            VStack
             {
-                ForEach(Array(plans.keys.sorted(by: <)), id: \.self) { day in
-                    Section(header:
-                        HStack
-                            {
+                Text("計畫")
+                List
+                {
+                    ForEach(Array(plans.keys.sorted(by: <)), id: \.self) { day in
+                        Section(header:
+                                    HStack
+                                {
                             Text(day).font(.title)
                             Text(getDayLabelText(for: day)) // 顯示 "第一天" 到 "第七天" 的文本
                             Spacer()
@@ -343,33 +338,34 @@ struct PlanView: View
                                     {
                                 plans[day]?.append("新計畫")
                             })
-                        {
+                            {
                                 Image(systemName: "plus.circle")
                                     .imageScale(.large)
                                     .foregroundColor(.blue)
                             }
                         }
-                    )
-                    {
-                        if let dayPlans = plans[day]
+                        )
                         {
-                            ForEach(dayPlans.indices, id: \.self) { index in
-                                let plan = dayPlans[index]
-                                NavigationLink(destination: EditPlanView(day: day, planIndex: index, plans: $plans))
-                                {
-                                    Text(plan).font(.headline)
+                            if let dayPlans = plans[day]
+                            {
+                                ForEach(dayPlans.indices, id: \.self) { index in
+                                    let plan = dayPlans[index]
+                                    NavigationLink(destination: EditPlanView(day: day, planIndex: index, plans: $plans))
+                                    {
+                                        Text(plan).font(.headline)
+                                    }
                                 }
-                            }
-                            .onDelete
-                            { indices in
-                                plans[day]?.remove(atOffsets: indices)
+                                .onDelete
+                                { indices in
+                                    plans[day]?.remove(atOffsets: indices)
+                                }
                             }
                         }
                     }
                 }
+                .scrollIndicators(.hidden)
+                .navigationBarTitle("計畫")
             }
-            .scrollIndicators(.hidden)
-            .navigationBarTitle("週計畫")
         }
     }
     

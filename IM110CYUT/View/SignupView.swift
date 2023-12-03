@@ -7,7 +7,7 @@ struct SignupView: View
     
     @Environment(\.dismiss) private var dismiss
     
-    @State private var information: (String, String, String, String, String, String, Double, Double, Double)=("", "", "", "", "", "", 0.0 , 0.0 ,0.0)
+    @State private var information: (String, String, String, String, String, String, String, String,Double , Double ,Double ,Double)=("", "", "", "", "", "", "" , "" ,0.0,0.0,0.0,0.0)
     
     //執行結果Alert
     @State private var result : (Bool,String)=(false,"")
@@ -28,7 +28,7 @@ struct SignupView: View
     private func signup() async
     {
         //輸入框有空 || 密碼不相同
-        if(self.information.0.isEmpty || self.information.1.isEmpty || self.information.1 != self.information.2) 
+        if(self.information.0.isEmpty || self.information.1.isEmpty || self.information.1 != self.information.2)
         {
             self.result.1="1.請確保沒有空白字段。\n2. 請確保您的密碼相同。"
             self.result.0.toggle()
@@ -36,7 +36,7 @@ struct SignupView: View
         else
         {
             //Authentication
-            Authentication().signup(account: self.information.0, password: self.information.1) 
+            Authentication().signup(account: self.information.0, password: self.information.1)
             {(_, error) in
                 //註冊失敗
                 if let error=error
@@ -47,7 +47,7 @@ struct SignupView: View
                 } else
                 {
                     //Realtime Database
-                    RealTime().signup(account: self.information.0, password: self.information.1, name: self.information.3,gender: self.information.4,birthday:self.information.5, height: String(self.information.6),weight: String(self.information.7), like: String(self.information.8))
+                    RealTime().signup(account: self.information.0, password: self.information.1, name: self.information.3,gender: self.information.4,birthday:self.information.5, height: String(self.information.6),weight: String(self.information.7), like1: String(self.information.8),like2: String(self.information.9),like3: String(self.information.10),like4: String(self.information.11))
                     self.result.1="註冊成功!"
                     self.result.0.toggle()
                     self.dismiss()
@@ -349,20 +349,24 @@ struct SignupView: View
             }
             .tag(4)
             
-            //喜好調查
+            //MARK: 喜好調查
+            //酸
             VStack
             {
+                Text("請調整您的偏好")
+                    .font(.title2)
+                    .foregroundColor(Color(red: 0.828, green: 0.249, blue: 0.115))
                 HStack
                 {
-                    Text("鹹")
+                    Text("1")
                         .padding()
                     Slider(value: $information.8, in: 1...5, step: 1)
                         .padding()
                         .accentColor(.blue)
-                    Text("淡")
+                    Text("5")
                         .padding()
                 }
-                Text("喜好偏向: \(Int(information.8))")
+                Text("酸: \(Int(information.8))")
                     .padding(.leading, 15)
                 VStack
                 {
@@ -383,7 +387,117 @@ struct SignupView: View
                 }
             }
             .tag(5)
-            
+            //甜
+            VStack
+            {
+                Text("請調整您的偏好")
+                    .font(.title2)
+                    .foregroundColor(Color(red: 0.828, green: 0.249, blue: 0.115))
+                HStack
+                {
+                    Text("1")
+                        .padding()
+                    Slider(value: $information.9, in: 1...5, step: 1)
+                        .padding()
+                        .accentColor(.blue)
+                    Text("5")
+                        .padding()
+                }
+                Text("甜: \(Int(information.9))")
+                    .padding(.leading, 15)
+                VStack
+                {
+                    Button
+                    {
+                        selectedTab = 7
+                    }
+                label:
+                    {
+                        Text("下一步")
+                            .font(.title3)
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(width: 300, height: 60)
+                            .background(Color(red: 0.828, green: 0.249, blue: 0.115))
+                            .clipShape(Capsule())
+                    }
+                }
+            }
+            .tag(6)
+            //苦
+            VStack
+            {
+                Text("請調整您的偏好")
+                    .font(.title2)
+                    .foregroundColor(Color(red: 0.828, green: 0.249, blue: 0.115))
+                HStack
+                {
+                    Text("1")
+                        .padding()
+                    Slider(value: $information.10, in: 1...5, step: 1)
+                        .padding()
+                        .accentColor(.blue)
+                    Text("5")
+                        .padding()
+                }
+                Text("苦: \(Int(information.10))")
+                    .padding(.leading, 15)
+                VStack
+                {
+                    Button
+                    {
+                        selectedTab = 8
+                    }
+                label:
+                    {
+                        Text("下一步")
+                            .font(.title3)
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(width: 300, height: 60)
+                            .background(Color(red: 0.828, green: 0.249, blue: 0.115))
+                            .clipShape(Capsule())
+                    }
+                }
+            }
+            .tag(7)
+            //辣
+            VStack
+            {
+                Text("請調整您的偏好")
+                    .font(.title2)
+                    .foregroundColor(Color(red: 0.828, green: 0.249, blue: 0.115))
+                HStack
+                {
+                    Text("1")
+                        .padding()
+                    Slider(value: $information.11, in: 1...5, step: 1)
+                        .padding()
+                        .accentColor(.blue)
+                    Text("5")
+                        .padding()
+                }
+                Text("辣: \(Int(information.11))")
+                    .padding(.leading, 15)
+                VStack
+                {
+                    Button
+                    {
+                        selectedTab = 9
+                    }
+                label:
+                    {
+                        Text("下一步")
+                            .font(.title3)
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(width: 300, height: 60)
+                            .background(Color(red: 0.828, green: 0.249, blue: 0.115))
+                            .clipShape(Capsule())
+                    }
+                }
+            }
+            .tag(8)
             //MARK: 所有資料
             VStack
             {
@@ -422,7 +536,7 @@ struct SignupView: View
                         {
                             //註冊
                             await self.signup()
-                          
+                            
                         }
                     }
                 label:
@@ -437,7 +551,7 @@ struct SignupView: View
                     }
                 }
             }
-            .tag(6)
+            .tag(9)
             
             
         }

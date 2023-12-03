@@ -40,7 +40,8 @@ struct CookView: View
                     NavigationLink(destination: AdjustView())
                     {
                         Text("調整計畫")
-                            .padding()
+//                            .padding()
+                            .offset(x: -20,y: -20)
                     }
                 }
                 List
@@ -78,9 +79,9 @@ struct CookView: View
     }
 }
 
-struct CookView_Previews: PreviewProvider 
+struct CookView_Previews: PreviewProvider
 {
-    static var previews: some View 
+    static var previews: some View
     {
         CookView()
     }

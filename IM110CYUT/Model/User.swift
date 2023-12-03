@@ -26,7 +26,11 @@ class User: ObservableObject
     //體重
     @Published var weight: String
     //
-    @Published var like : String
+    @Published var like1 : String
+    @Published var like2 : String
+    @Published var like3 : String
+    @Published var like4 : String
+
 
     //MARK: 初始化
     init()
@@ -39,7 +43,10 @@ class User: ObservableObject
         self.birthday=""
         self.height="0.0"
         self.weight="0.0"
-        self.like="0.0"
+        self.like1="0.0"
+        self.like2="0.0"
+        self.like3="0.0"
+        self.like4="0.0"
     }
 
     //MARK: 刪除
@@ -53,10 +60,13 @@ class User: ObservableObject
         self.birthday=""
         self.height="0.0"
         self.weight="0.0"
-        self.like="0.0"
+        self.like1="0.0"
+        self.like2="0.0"
+        self.like3="0.0"
+        self.like4="0.0"
     }
     //MARK: 更新
-    func setUser(id: String, account: String, password: String, name: String, gender: String, birthday: String, height: String, weight: String ,like: String)
+    func setUser(id: String, account: String, password: String, name: String, gender: String, birthday: String, height: String, weight: String ,like1: String,like2: String,like3: String,like4: String)
     {
         self.id=id
         self.account=account
@@ -66,6 +76,9 @@ class User: ObservableObject
         self.birthday=birthday
         self.height=height
         self.weight=weight
-        self.like=like
+        self.like1=like1
+        self.like2=like2
+        self.like3=like3
+        self.like4=like4
     }
 }

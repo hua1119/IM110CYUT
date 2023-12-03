@@ -63,7 +63,10 @@ struct RealTime
                                     value["birthday"] as! String,
                                     value ["height"] as! String,
                                     value ["weight"] as! String,
-                                    value ["like"] as! String
+                                    value ["like1"] as! String,
+                                    value ["like2"] as! String,
+                                    value ["like3"] as! String,
+                                    value ["like4"] as! String
                                 ],
                                 //錯誤為空值
                                 nil
@@ -113,7 +116,7 @@ struct RealTime
             }
     }
     //MARK: 註冊
-    func signup(account: String, password: String, name: String, gender: String, birthday: String, height: String, weight: String ,like: String)
+    func signup(account: String, password: String, name: String, gender: String, birthday: String, height: String, weight: String ,like1: String,like2: String,like3: String,like4: String)
     {
         //隨機產生ID
         let id: String=UUID().uuidString
@@ -123,7 +126,7 @@ struct RealTime
             //指定ID節點
             .child(id)
             //寫入ID資料 Account資料 Password資料 Name資料
-            .setValue(["ID": id, "Account": account, "Password": password, "Name": name,"gender": gender,"birthday":birthday,"height": height,"weight": weight, "like":like]) {(error, success) in
+            .setValue(["ID": id, "Account": account, "Password": password, "Name": name,"gender": gender,"birthday":birthday,"height": height,"weight": weight, "like1":like1, "like2":like2, "like3":like3, "like4":like4]) {(error, success) in
                 //寫入失敗
                 if let error=error
                 {

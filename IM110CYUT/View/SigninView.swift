@@ -60,7 +60,10 @@ struct SigninView: View
                             birthday: result[5] ?? "", // 使用轉換後的日期對象
                             height: result[6],
                             weight: result[7],
-                            like: result[8]
+                            like1: result[8],
+                            like2: result[9],
+                            like3: result[10],
+                            like4: result[11]
                         )
                         self.result.1 = "歡迎! \(self.user.name)"
                         self.result.0.toggle()

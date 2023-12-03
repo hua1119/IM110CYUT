@@ -54,7 +54,6 @@ struct IngredientRow: View
 
         var body: some View 
         {
-            Text("採購")
             if recipes.isEmpty
             {
                 Text("目前無採買項目")
