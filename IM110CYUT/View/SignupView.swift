@@ -66,6 +66,11 @@ struct SignupView: View
         InformationLabel(image: "birthday.cake.fill", label: "生日"),
         InformationLabel(image: "ruler", label: "身高"),
         InformationLabel(image: "dumbbell", label: "體重"),
+        InformationLabel(system: false, image: "acid", label: "酸"),
+        InformationLabel(system: false, image: "sweet", label: "甜"),
+        InformationLabel(system: false, image: "bitter", label: "苦"),
+        InformationLabel(system: false, image: "spicy", label: "辣")
+        
     ]
     //MARK: 設定顯示資訊
     private func setInformation(index: Int) -> String
@@ -88,6 +93,14 @@ struct SignupView: View
             return "\(self.information.6)" //身高
         case 7:
             return "\(self.information.7)" //體重
+        case 8:
+            return "\(self.information.8)" //酸
+        case 9:
+            return "\(self.information.9)" //甜
+        case 10:
+            return "\(self.information.10)" //苦
+        case 11:
+            return "\(self.information.11)" //辣
         default:
             return ""
         }
@@ -167,6 +180,7 @@ struct SignupView: View
                         }
                     }
                 }
+                .ignoresSafeArea(.keyboard)
             }
             .tag(0)
             
@@ -203,6 +217,7 @@ struct SignupView: View
                     }
                 }
             }
+            .ignoresSafeArea(.keyboard)
             .tag(1)
             
             //MARK: 選擇性別
@@ -312,7 +327,7 @@ struct SignupView: View
                 VStack
                 {
                     
-                    TextField("輸入您的身高", value: self.$information.6, formatter: NumberFormatter())
+                    TextField("輸入您的身高", text: self.$information.6)
                         .padding()
                         .background(Color.gray.opacity(0.1))
                         .frame(width: 300, height: 50)
@@ -322,7 +337,7 @@ struct SignupView: View
                 //體重
                 VStack
                 {
-                    TextField("輸入您的體重", value: self.$information.7, formatter: NumberFormatter())
+                    TextField("輸入您的體重", text: self.$information.7)
                         .padding()
                         .background(Color.gray.opacity(0.1))
                         .frame(width: 300, height: 50)
@@ -347,11 +362,12 @@ struct SignupView: View
                     }
                 }
             }
+            .ignoresSafeArea(.keyboard)
             .tag(4)
             
             //MARK: 喜好調查
             //酸
-            VStack
+            VStack(spacing: 60)
             {
                 Text("請調整您的偏好")
                     .font(.title2)
@@ -388,7 +404,7 @@ struct SignupView: View
             }
             .tag(5)
             //甜
-            VStack
+            VStack(spacing: 60)
             {
                 Text("請調整您的偏好")
                     .font(.title2)
@@ -425,7 +441,7 @@ struct SignupView: View
             }
             .tag(6)
             //苦
-            VStack
+            VStack(spacing: 60)
             {
                 Text("請調整您的偏好")
                     .font(.title2)
@@ -462,7 +478,7 @@ struct SignupView: View
             }
             .tag(7)
             //辣
-            VStack
+            VStack(spacing: 60)
             {
                 Text("請調整您的偏好")
                     .font(.title2)
@@ -555,7 +571,8 @@ struct SignupView: View
             
             
         }
-        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
+        .tabViewStyle(.page(indexDisplayMode: self.selectedTab<9 ? .always:.never))
+        .animation(.smooth, value: self.selectedTab)
         .onTapGesture {
             self.dismissKeyboard()
         }

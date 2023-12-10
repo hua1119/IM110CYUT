@@ -303,7 +303,6 @@ extension Double
 struct BMIRecordDetailView: View 
 {
     var record: BMIRecord
-    
     var body: some View
     {
         VStack 

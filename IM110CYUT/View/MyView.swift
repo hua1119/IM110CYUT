@@ -334,7 +334,7 @@ struct MyView_Previews: PreviewProvider
             MyView(
                 select: .constant(2),
                 information: .constant(
-                    Information(name: "vc", gender: "女性", birthday:Date(), height: "161", weight: "50", BMI: 19.68,like: "0")
+                    Information(name: "vc", gender: "女性", birthday:Date(), height: "161", weight: "50", BMI: 19.68,like1: "0",like2: "0",like3: "0",like4: "0")
                 )
             )
         }

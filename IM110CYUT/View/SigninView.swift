@@ -222,7 +222,9 @@ struct SigninView: View
                 }
                 .padding(.horizontal, 50)
                 .transition(.opacity)
+                .ignoresSafeArea(.keyboard)
             }
+                
         }
         //MARK: 結果Alert
         .alert(self.result.1, isPresented: self.$result.0)

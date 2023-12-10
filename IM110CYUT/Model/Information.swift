@@ -15,5 +15,8 @@ struct Information
     var height: String
     var weight: String
     var BMI: Double
-    var like: String
+    var like1: String
+    var like2: String
+    var like3: String
+    var like4: String
 }
