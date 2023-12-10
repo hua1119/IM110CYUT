@@ -24,11 +24,11 @@ struct RealTime
     func deleteUser(id: String)
     {
         self.reference
-            //指定User節點
+        //指定User節點
             .child("User")
-            //指定id節點
+        //指定id節點
             .child(id)
-            //刪除
+        //刪除
             .removeValue()
     }
     //MARK: 查詢
@@ -43,11 +43,11 @@ struct RealTime
             {
                 id=result
                 self.reference
-                    //指定User節點
+                //指定User節點
                     .child("User")
-                    //指定ID節點
+                //指定ID節點
                     .child(id)
-                    //查詢該ID節點中的所有資料
+                //查詢該ID節點中的所有資料
                     .observeSingleEvent(of: .value, with: {data in
                         //將資料轉換成NSDictionary結構 以方便查詢
                         if let value=data.value as? NSDictionary
@@ -86,9 +86,9 @@ struct RealTime
     func getUserID(account: String, completion: @escaping (String?, Error?) -> Void)
     {
         self.reference
-            //指定User節點
+        //指定User節點
             .child("User")
-            //取得當前節點中的所有資料
+        //取得當前節點中的所有資料
             .getData {(error, result) in
                 //有查到資料
                 if let result=result
@@ -121,20 +121,35 @@ struct RealTime
         //隨機產生ID
         let id: String=UUID().uuidString
         self.reference
-            //指定User節點
+        //指定User節點
             .child("User")
-            //指定ID節點
+        //指定ID節點
             .child(id)
-            //寫入ID資料 Account資料 Password資料 Name資料
+        //寫入ID資料 Account資料 Password資料 Name資料
             .setValue(["ID": id, "Account": account, "Password": password, "Name": name,"gender": gender,"birthday":birthday,"height": height,"weight": weight, "like1":like1, "like2":like2, "like3":like3, "like4":like4]) {(error, success) in
                 //寫入失敗
                 if let error=error
                 {
                     print("Realtime sign up error: \(error.localizedDescription)")
-                //寫入成功
+                    //寫入成功
                 } else{
                     print("Realtime sign up success.")
                 }
             }
+    }
+    //MARK: 修改姓名
+    func updateUserNameAndDelete(id: String, name: String, completion: @escaping () -> Void) {
+        self.reference
+            .child("User")
+            .child(id)
+            .child("Name")
+            .setValue(name)
+        {(error, reference) in
+            if let error
+            {
+                print(error.localizedDescription)
+            }
+            completion()
+        }
     }
 }

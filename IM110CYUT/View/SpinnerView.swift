@@ -5,6 +5,7 @@
 //  Created by Mac on 2023/10/27.
 //
 
+
 import SwiftUI
 
 struct TrianglePointer: View
@@ -41,9 +42,10 @@ struct SpinnerView: View
     @State private var isRotating = false
     // 用於存儲選定的食物名稱，初始設置為空字符串，當轉盤選定一個食物時，它會被更新為該食物的名稱
     @State private var selectedFood = ""
+    @Environment(\.presentationMode) var presentationMode
     
     // 用來判斷跟存放目前有幾項食物
-    let foodNames = ["披薩", "漢堡", "壽司", "義大利麵", "沙拉", "牛排", "吐司", "冰淇淋", "魚排", "麵線", "寂寞", "蛋糕"]
+    let foodNames = ["披薩", "漢堡", "壽司", "義大利麵", "沙拉", "牛排", "吐司", "冰淇淋", "魚排", "麵線", "雞塊", "蛋糕"]
     
     
     var body: some View
@@ -73,6 +75,8 @@ struct SpinnerView: View
             // 根據狀態變量禁用按鈕
             .disabled(!isButtonEnabled)
             .padding()
+            //三角形指針的呈現與判斷
+            TrianglePointer(selectedFood: $selectedFood)
         }
         
         // 彈出視窗
@@ -94,9 +98,9 @@ struct SpinnerView: View
                     self.isRotating = false
                 }
             )
+            
         }
-        //三角形指針的呈現與判斷
-        TrianglePointer(selectedFood: $selectedFood)
+       
     }
     
     // MARK: 動畫與圈數設置
@@ -150,7 +154,7 @@ struct OrangeWhiteSpinner: View
     @Binding var rotationAngle: Double
     
     // 讀取食物內容
-    let foodNames = ["披薩", "漢堡", "壽司", "義大利麵", "沙拉", "牛排", "吐司", "冰淇淋", "麥當當", "麵線", "寂寞", "蛋糕"]
+    let foodNames = ["披薩", "漢堡", "壽司", "義大利麵", "沙拉", "牛排", "吐司", "冰淇淋", "麥當當", "麵線", "雞塊", "蛋糕"]
     
     // 食物位置角度計算
     private func angleForSelectedFood() -> Angle
@@ -223,7 +227,7 @@ struct OrangeWhiteSpinner: View
                     Text("麵線")
                         .rotationEffect(.degrees(-105))
                         .offset(x:-150, y: 40)
-                    Text("寂寞")
+                    Text("雞塊 ")
                         .rotationEffect(.degrees(-135))
                         .offset(x: -110, y: 110)
                     Text("魚排")
@@ -298,3 +302,10 @@ struct Triangle: Shape
     }
 }
 
+struct SpinnerView_Previews: PreviewProvider
+{
+    static var previews: some View
+    {
+        SpinnerView()
+    }
+}

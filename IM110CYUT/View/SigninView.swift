@@ -101,14 +101,14 @@ struct SigninView: View
                 VStack(spacing: 20)
                 {
                     //MARK: logo
-                    //                    Image()
-                    //                        .resizable()
-                    //                        .scaledToFit()
-                    //                        .frame(width: 150)
-                    //                        .background(.gray)
-                    //                        .clipShape(Circle())
-                    //                        .padding(.bottom, 50)
-                    
+//                                        Image("bitter")
+//                                            .resizable()
+//                                            .scaledToFit()
+//                                            .frame(width: 150)
+//                                            .background(.gray)
+//                                            .clipShape(Circle())
+//                                            .padding(.bottom, 50)
+//                    
                     Circle()
                         .fill(.gray)
                         .scaledToFit()

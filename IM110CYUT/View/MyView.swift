@@ -15,21 +15,23 @@ struct MyView: View
     @AppStorage("signin") private var signin: Bool = false
     
     @Binding var select: Int
-    @Binding var information: Information
     
+    
+    @State private var realTime: RealTime = RealTime() // 创建 RealTime 对象
     @State private var pickImage: PhotosPickerItem?
     @State var isDarkMode: Bool = false
     @State private var isNameSheetPresented = false //更新名字完後會自動關掉ＳＨＥＥＴ
     
     @Environment(\.presentationMode) private var presentationMode
-    
+    //提供所有View使用的User結構
+    @EnvironmentObject private var user: User
     private let label: [InformationLabel]=[
         InformationLabel(image: "person.fill", label: "名稱"),
         InformationLabel(image: "figure.arms.open", label: "性別"),
         InformationLabel(image: "birthday.cake.fill", label: "生日"),
     ]
     
-//    private let tag: [String]=["高血壓", "尿酸", "高血脂", "美食尋寶家", "7日打卡"]
+    //    private let tag: [String]=["高血壓", "尿酸", "高血脂", "美食尋寶家", "7日打卡"]
     
     // MARK: 設定顯示資訊
     private func setInformation(index: Int) -> String
@@ -37,11 +39,11 @@ struct MyView: View
         switch(index)
         {
         case 0:
-            return self.information.name
+            return self.user.name
         case 1:
-            return self.information.gender
+            return self.user.gender
         case 2:
-            return self.information.birthday.formatted(date: .numeric, time: .omitted)
+            return self.user.birthday
         default:
             return ""
         }
@@ -163,7 +165,7 @@ struct MyView: View
                                         HStack
                                         {
                                             InformationLabel(image: "person.fill", label: "姓名")
-                                            Text(self.setInformation(index: 0)) // 传递0或1作为参数，根据需要的索引
+                                            Text(self.user.name) // 传递0或1作为参数，根据需要的索引
                                                 .foregroundColor(.gray)
                                             
                                         }
@@ -172,8 +174,9 @@ struct MyView: View
                                     .cornerRadius(8) // 可选：添加圆角
                                 }
                                 .sheet(isPresented: $isNameSheetPresented) {
-                                    NameSheetView(name: $information.name, isPresented: $isNameSheetPresented)
+                                    NameSheetView(name: $user.name, isPresented: $isNameSheetPresented, realTime: realTime)
                                 }
+
                                 
                                 
                                 //                            NavigationLink(destination: MenuView())
@@ -286,44 +289,88 @@ struct MyView: View
                         newValue in
                         self.isDarkMode = !self.colorScheme
                     }
+                    .onAppear {
+                        // 从 RealTime 获取用户信息
+                        realTime.getUser(account: "用户的账号") { userInfo, error in
+                            if let userInfo = userInfo {
+                                // 更新 MyView 中的用户信息
+                                self.user.name = userInfo[3]
+                                self.user.gender=userInfo[4]
+                                self.user.birthday=userInfo[5]// 请根据实际情况修改索引
+                                // 更新其他用户信息，根据需要
+                            } else if let error = error {
+                                print("Error getting user information: \(error.localizedDescription)")
+                            }
+                        }
+                    }
                 }
             }
         }
     }
 }
 
-
-struct NameSheetView: View 
-{
+struct NameSheetView: View {
     @Binding var name: String
     @Binding var isPresented: Bool
     @State private var newName = ""
-    
-    var body: some View 
-    {
-        NavigationStack 
-        {
-            Form 
-            {
-                Section(header: Text("更改姓名")) 
-                {
+    var realTime: RealTime // 添加 RealTime 属性
+
+    var body: some View {
+        NavigationStack {
+            Form {
+                Section(header: Text("更改姓名")) {
                     TextField("新的姓名", text: $newName)
                 }
             }
             .navigationBarItems(
-                leading: Button("取消") 
-                {
+                leading: Button("取消") {
                     isPresented = false
                 },
-                trailing: Button("保存") 
-                {
-                    name = newName
-                    isPresented = false
+                trailing: Button("保存") {
+                    // 保存新的姓名到 RealTime，并删除旧信息
+                    realTime.updateUserNameAndDelete(id:"", name: newName)
+                    {
+                        self.name=self.newName
+                    }
                 }
             )
         }
     }
 }
+
+
+
+//struct NameSheetView: View
+//{
+//    @Binding var name: String
+//    @Binding var isPresented: Bool
+//    @State private var newName = ""
+//
+//    var body: some View
+//    {
+//        NavigationStack
+//        {
+//            Form
+//            {
+//                Section(header: Text("更改姓名"))
+//                {
+//                    TextField("新的姓名", text: $newName)
+//                }
+//            }
+//            .navigationBarItems(
+//                leading: Button("取消")
+//                {
+//                    isPresented = false
+//                },
+//                trailing: Button("保存")
+//                {
+//                    name = newName
+//                    isPresented = false
+//                }
+//            )
+//        }
+//    }
+//}
 
 struct MyView_Previews: PreviewProvider
 {
@@ -332,10 +379,7 @@ struct MyView_Previews: PreviewProvider
         NavigationStack
         {
             MyView(
-                select: .constant(2),
-                information: .constant(
-                    Information(name: "vc", gender: "女性", birthday:Date(), height: "161", weight: "50", BMI: 19.68,like1: "0",like2: "0",like3: "0",like4: "0")
-                )
+                select: .constant(2)
             )
         }
     }

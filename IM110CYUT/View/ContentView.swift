@@ -70,7 +70,7 @@ struct ContentView: View
                         Label("動態", systemImage: "chart.xyaxis.line")
                     }
                     
-                    MyView(select: self.$select, information: self.$information)
+                    MyView(select: self.$select)
                         .tag(4)
                         .tabItem
                     {

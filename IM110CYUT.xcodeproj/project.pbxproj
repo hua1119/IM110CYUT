@@ -12,6 +12,10 @@
 		048D11AA2B10748D00F57403 /* ShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048D11A92B10748D00F57403 /* ShopView.swift */; };
 		04962B192B1C640800B51969 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04962B182B1C640800B51969 /* FavoriteView.swift */; };
 		04A6C0092B256E090078C753 /* Userlike.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04A6C0082B256E090078C753 /* Userlike.xcassets */; };
+		04A6C00B2B25B7160078C753 /* EditPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A6C00A2B25B7160078C753 /* EditPlanView.swift */; };
+		04A6C00D2B25B7640078C753 /* FoodSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A6C00C2B25B7640078C753 /* FoodSelectionView.swift */; };
+		04A6C0102B25B7920078C753 /* FoodOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A6C00F2B25B7920078C753 /* FoodOption.swift */; };
+		04A6C0122B25B7AB0078C753 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A6C0112B25B7AB0078C753 /* CustomButton.swift */; };
 		04C3D8CC2B1057ED001C28D9 /* IM110CYUTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C3D8CB2B1057ED001C28D9 /* IM110CYUTApp.swift */; };
 		04C3D8CE2B1057ED001C28D9 /* CcontentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C3D8CD2B1057ED001C28D9 /* CcontentView.swift */; };
 		04C3D8D02B1057EE001C28D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04C3D8CF2B1057EE001C28D9 /* Assets.xcassets */; };
@@ -69,6 +73,10 @@
 		048D11A92B10748D00F57403 /* ShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopView.swift; sourceTree = "<group>"; };
 		04962B182B1C640800B51969 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
 		04A6C0082B256E090078C753 /* Userlike.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Userlike.xcassets; sourceTree = "<group>"; };
+		04A6C00A2B25B7160078C753 /* EditPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPlanView.swift; sourceTree = "<group>"; };
+		04A6C00C2B25B7640078C753 /* FoodSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodSelectionView.swift; sourceTree = "<group>"; };
+		04A6C00F2B25B7920078C753 /* FoodOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodOption.swift; sourceTree = "<group>"; };
+		04A6C0112B25B7AB0078C753 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		04C3D8C82B1057ED001C28D9 /* IM110CYUT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IM110CYUT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04C3D8CB2B1057ED001C28D9 /* IM110CYUTApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IM110CYUTApp.swift; sourceTree = "<group>"; };
 		04C3D8CD2B1057ED001C28D9 /* CcontentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CcontentView.swift; sourceTree = "<group>"; };
@@ -216,6 +224,7 @@
 				04DEF6CC2B105C1800FDDA2C /* Forum.swift */,
 				04DEF6CD2B105C1800FDDA2C /* RealTime.swift */,
 				04DEF6CE2B105C1800FDDA2C /* Information.swift */,
+				04A6C00F2B25B7920078C753 /* FoodOption.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -252,6 +261,9 @@
 				04DEF6F62B105EAF00FDDA2C /* MemberButton.swift */,
 				04DEF6F72B105EAF00FDDA2C /* TagButton.swift */,
 				04DEF6F82B105EAF00FDDA2C /* InformationLabel.swift */,
+				04A6C00A2B25B7160078C753 /* EditPlanView.swift */,
+				04A6C00C2B25B7640078C753 /* FoodSelectionView.swift */,
+				04A6C0112B25B7AB0078C753 /* CustomButton.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -368,7 +380,9 @@
 				04DEF6E22B105C9D00FDDA2C /* ForgePasswordView.swift in Sources */,
 				04DEF6D42B105C1800FDDA2C /* User.swift in Sources */,
 				04DEF6CF2B105C1800FDDA2C /* StoRage.swift in Sources */,
+				04A6C00B2B25B7160078C753 /* EditPlanView.swift in Sources */,
 				04C3D8D82B1057EE001C28D9 /* IM110CYUT.xcdatamodeld in Sources */,
+				04A6C00D2B25B7640078C753 /* FoodSelectionView.swift in Sources */,
 				048D11AA2B10748D00F57403 /* ShopView.swift in Sources */,
 				04DEF6D62B105C1800FDDA2C /* RealTime.swift in Sources */,
 				04DEF6FB2B105EAF00FDDA2C /* InformationLabel.swift in Sources */,
@@ -379,7 +393,9 @@
 				04DEF6C32B105C0D00FDDA2C /* Recipe.swift in Sources */,
 				04DEF6EA2B105CB900FDDA2C /* MyView.swift in Sources */,
 				0422F6F62B134DC9001109F8 /* AdjustView.swift in Sources */,
+				04A6C0102B25B7920078C753 /* FoodOption.swift in Sources */,
 				04D12D632B1315E5009DEE6D /* CookView.swift in Sources */,
+				04A6C0122B25B7AB0078C753 /* CustomButton.swift in Sources */,
 				04DEF6FA2B105EAF00FDDA2C /* TagButton.swift in Sources */,
 				04DEF6D12B105C1800FDDA2C /* Authentication.swift in Sources */,
 				04DEF6D52B105C1800FDDA2C /* Forum.swift in Sources */,
