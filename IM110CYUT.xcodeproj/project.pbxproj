@@ -65,6 +65,7 @@
 		04DEF6FA2B105EAF00FDDA2C /* TagButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DEF6F72B105EAF00FDDA2C /* TagButton.swift */; };
 		04DEF6FB2B105EAF00FDDA2C /* InformationLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DEF6F82B105EAF00FDDA2C /* InformationLabel.swift */; };
 		04DEF6FD2B105EDA00FDDA2C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DEF6FC2B105EDA00FDDA2C /* HomeView.swift */; };
+		04FB7EE12B2EF30C00897650 /* StockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FB7EE02B2EF30C00897650 /* StockView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -118,6 +119,7 @@
 		04DEF6F72B105EAF00FDDA2C /* TagButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagButton.swift; sourceTree = "<group>"; };
 		04DEF6F82B105EAF00FDDA2C /* InformationLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationLabel.swift; sourceTree = "<group>"; };
 		04DEF6FC2B105EDA00FDDA2C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		04FB7EE02B2EF30C00897650 /* StockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -251,6 +253,7 @@
 				048D11A92B10748D00F57403 /* ShopView.swift */,
 				04DEF6F12B105E9300FDDA2C /* SignupView.swift */,
 				04DEF6F32B105EAB00FDDA2C /* SpinnerView.swift */,
+				04FB7EE02B2EF30C00897650 /* StockView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04FB7EE12B2EF30C00897650 /* StockView.swift in Sources */,
 				04DEF6D72B105C1800FDDA2C /* Information.swift in Sources */,
 				04DEF6BE2B105BFF00FDDA2C /* String.swift in Sources */,
 				04C3D8D52B1057EE001C28D9 /* Persistence.swift in Sources */,

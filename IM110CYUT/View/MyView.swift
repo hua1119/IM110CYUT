@@ -211,8 +211,8 @@ struct MyView: View
                             //MARK: 食材紀錄
                             HStack
                             {
-                                NavigationLink(destination: MenuView()) {
-                                    InformationLabel(image: "doc.on.clipboard", label: "食材紀錄")
+                                NavigationLink(destination: StockView()) {
+                                    InformationLabel(image: "doc.on.clipboard", label: "檢視庫存")
                                 }
                             }
                             //MARK: 飲食偏好
