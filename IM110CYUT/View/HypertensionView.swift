@@ -1,7 +1,7 @@
 //血壓（Blood Pressure）的英文縮寫是 BP
 
 
-// MARK: 高血壓
+// MARK: 血壓View
 import SwiftUI
 import Charts
 
@@ -49,7 +49,7 @@ struct HypertensionView: View
     
     var body: some View
     {
-        NavigationStack
+        NavigationView
         {
             VStack
             {

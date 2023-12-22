@@ -1,4 +1,4 @@
-//ShopView
+// MARK: 採購View
 
 import SwiftUI
 

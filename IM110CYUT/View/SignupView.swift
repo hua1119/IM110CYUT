@@ -1,3 +1,5 @@
+
+// MARK: 註冊View
 import SwiftUI
 
 struct SignupView: View
@@ -573,7 +575,7 @@ struct SignupView: View
             {
                 if(self.result.1.contains("success"))
                 {
-                    self.dismiss()
+                    self.dismissKeyboard()
                     
                 }
             }

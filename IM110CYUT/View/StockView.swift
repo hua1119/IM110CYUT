@@ -5,6 +5,7 @@
 //  Created by Ｍac on 2023/12/17.
 //
 
+// MARK: 庫存View
 import SwiftUI
 
 // MARK: 庫存食材格式

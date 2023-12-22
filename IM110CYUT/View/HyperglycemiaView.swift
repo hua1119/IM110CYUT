@@ -5,7 +5,7 @@
 //  Created by 0911
 //
 
-// MARK: 高血糖
+// MARK: 血糖View
 import SwiftUI
 import Charts
 

@@ -3,8 +3,8 @@
 //  GP110IM
 //
 //  Created by 朝陽資管 on 2023/10/27.
-//MARK: BMI 血壓 BP 血糖 BS 血脂 BL
 
+// MARK: 動態View（BMI 血壓 BP 血糖 BS 血脂 BL）
 import SwiftUI
 import Charts
 
