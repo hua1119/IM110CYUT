@@ -1,3 +1,5 @@
+
+// MARK: 計畫View
 import SwiftUI
 
 struct PlanView: View
@@ -69,7 +71,7 @@ struct PlanView: View
         }
     }
     
-    // 根據日期獲取 "第一天" 到 "第七天" 的文本
+    // MARK: 根據日期獲取 "第一天" 到 "第七天" 的文本
     private func getDayLabelText(for date: String) -> String
     {
         guard let index = Array(plans.keys.sorted(by: <)).firstIndex(of: date) else

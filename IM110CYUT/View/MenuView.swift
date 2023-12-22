@@ -5,14 +5,14 @@
 //  Created by Mac on 2023/9/13.
 //
 
+// MARK: 菜單煮法View
 import SwiftUI
 
 struct MenuView: View
 {
     var body: some View
     {
-        //滑動功能
-        ScrollView
+        ScrollView //滑動功能
         {
             VStack(spacing: 10)
             {

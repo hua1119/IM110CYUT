@@ -36,6 +36,6 @@ func overlayRectangleWithText() -> some View
                 .font(.body)
         }
         .foregroundColor(Color.black)
-        .padding(.horizontal) // 在水平方向上添加安全區塊
+        .padding(.horizontal) //在水平方向上添加安全區塊
     }
 }

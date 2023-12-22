@@ -18,7 +18,7 @@ struct FoodSelectionView: View {
             Text("選擇一個食物：")
                 .font(.title)
                 .padding()
-
+            
             ScrollView {
                 ForEach(foodOptions, id: \.name) { foodOption in
                     Button(action: {
@@ -40,16 +40,16 @@ struct FoodSelectionView: View {
                                 .scaledToFill()
                                 .frame(width: UIScreen.main.bounds.width - 40, height: 150)
                                 .cornerRadius(10)
-                                
-
+                            
+                            
                             VStack {
-                                    Spacer()
-                                    Label(foodOption.name, systemImage: "")
+                                Spacer()
+                                Label(foodOption.name, systemImage: "")
                                     .font(.headline)
                                     .foregroundColor(.primary)
                                     .padding()
                                     .offset(y: 45) //向下移動10個點，你可以根據需要調整這個值
-                                                       }
+                            }
                         }
                         
                     }
@@ -57,7 +57,7 @@ struct FoodSelectionView: View {
                     
                     .padding(.bottom, 60)
                 }
-               
+                
             }
             .scrollIndicators(.hidden)
         }

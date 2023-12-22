@@ -5,36 +5,30 @@
 //  Created by Ｍac on 2023/11/24.
 //
 
+// MARK: 登入View
 import SwiftUI
-//登入畫面
+
+// MARK: 登入
 struct SigninView: View
 {
-    //存取登入狀態
-    @AppStorage("signin") private var signin: Bool=false
-    //提供所有View使用的User結構
-    @EnvironmentObject private var user: User
+    @AppStorage("signin") private var signin: Bool=false //存取登入狀態
 
-    //執行結果Alert
-    @State private var result: (Bool, String)=(false, "")
+    @State private var result: (Bool, String)=(false, "") //執行結果Alert
+    @State private var information: (String, String)=("", "") //帳號密碼
+    @State private var forget: Bool=false //開啟「忘記密碼」的狀態
+    @State private var remember: Bool=false //手機儲存「記住我」狀態，之後要改
+
+    @EnvironmentObject private var user: User //提供所有View使用的User結構
+
     
-    //帳號密碼
-    @State private var information: (String, String)=("", "")
-    
-    //開啟「忘記密碼」的狀態
-    @State private var forget: Bool=false
-    
-    //手機儲存「記住我」狀態
-    @State private var remember: Bool=false //之後要改
-    
-    
-    //MARK: 使用者登入
+    // MARK: 使用者登入
     private func signIn() async
     {
         // Authentication
         Authentication().signin(account: self.information.0, password: self.information.1)
         { (_, error) in
-            // 登入失敗
-            if let error = error
+            if let error = error //登入失敗
+
             {
                 self.result.1 = error.localizedDescription
                 self.result.0.toggle()
@@ -43,21 +37,19 @@ struct SigninView: View
                 // Realtime Database
                 RealTime().getUser(account: self.information.0)
                 { (result, error) in
-                    // 登入成功回傳的使用者資料
-                    if let result = result
+                    if let result = result //登入成功回傳的使用者資料
                     {
-                        // 格式化生日日期字符串为日期
-                        let dateFormatter = DateFormatter()
-                        dateFormatter.dateFormat = "yyyy-MM-dd" // 根据你的日期格式调整
+                        let dateFormatter = DateFormatter() //格式化生日日期字符串為日期
+                        dateFormatter.dateFormat = "yyyy-MM-dd" //根據你的日期格式调整
                         
-                        // 存进User
+                        // MARK: 存進User
                         self.user.setUser(
                             id: result[0],
                             account: result[1],
                             password: result[2],
                             name: result[3],
                             gender: result[4],
-                            birthday: result[5] ?? "", // 使用轉換後的日期對象
+                            birthday: result[5] ?? "", //使用轉換後的日期對象
                             height: result[6],
                             weight: result[7],
                             like1: result[8],
@@ -76,8 +68,9 @@ struct SigninView: View
 //                            self.result.0.toggle()
 //                        }
                         
-                        // 登入失敗
-                    } else if let error = error {
+                    }
+                    else if let error = error  //登入失敗
+                    {
                         self.result.1 = error.localizedDescription
                         self.result.0.toggle()
                     }
@@ -117,14 +110,14 @@ struct SigninView: View
                     
                     VStack(spacing: 30)
                     {
-                        //MARK: 帳號
+                        // MARK: 帳號
                         TextField("帳號...", text: self.$information.0)
                             .scrollContentBackground(.hidden)
                             .padding()
                             .background(Color(.systemGray5))
                             .clipShape(Capsule())
                         
-                        //MARK: 密碼
+                        // MARK: 密碼
                         SecureField("密碼...", text: self.$information.1)
                             .scrollContentBackground(.hidden)
                             .padding()
@@ -142,7 +135,7 @@ struct SigninView: View
                     }
                     HStack
                     {
-                        //MARK: 記住我
+                        // MARK: 記住我
                         HStack
                         {
                             Circle()
@@ -168,7 +161,7 @@ struct SigninView: View
                         
                         Spacer()
                         
-                        //MARK: 忘記密碼
+                        // MARK: 忘記密碼
                         Button("忘記密碼？")
                         {
                             self.forget.toggle()
@@ -181,12 +174,11 @@ struct SigninView: View
                             .presentationDetents([.medium])
                             .presentationCornerRadius(30)
                     }
-                    //MARK: 登入
+                    // MARK: 登入
                     Button
                     {
                         Task {
-                            //登入
-                            await self.signIn()
+                            await self.signIn() //登入
                         }
                     }
                 label:
@@ -200,7 +192,7 @@ struct SigninView: View
                             .clipShape(Capsule())
                     }
                     
-                    //MARK: Circle
+                    // MARK: Circle
                     HStack
                     {
                         ForEach(0..<3)
@@ -226,7 +218,7 @@ struct SigninView: View
             }
                 
         }
-        //MARK: 結果Alert
+        // MARK: 結果Alert
         .alert(self.result.1, isPresented: self.$result.0)
         {
             Button("完成", role: .cancel)

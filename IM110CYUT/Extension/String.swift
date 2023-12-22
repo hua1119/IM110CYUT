@@ -7,7 +7,7 @@
 
 import Foundation
 
-//擴充String區間擷取功能
+// MARK: 擴充String區間擷取功能
 extension String 
 {
     subscript(_ range: CountableRange<Int>) -> String 

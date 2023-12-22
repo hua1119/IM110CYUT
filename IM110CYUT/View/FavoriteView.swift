@@ -4,26 +4,30 @@
 //  Created on 2023/8/18.
 //
 
+// MARK: 最愛View
 import SwiftUI
 
-struct FavoriteView: View {
-    var body: some View {
-        ScrollView {
-            VStack(spacing: 20) {
-                ForEach(0..<10) { _ in
-                    VStack(alignment: .leading) {
+struct FavoriteView: View 
+{
+    var body: some View 
+    {
+        ScrollView 
+        {
+            VStack(spacing: 20) 
+            {
+                ForEach(0..<10) 
+                { _ in
+                    VStack(alignment: .leading)
+                    {
                         HStack {
-                            // 頭像
-                            Circle()
+                            Circle() //頭像
                                 .fill(Color(.systemGray3))
                                 .frame(width: 50)
-
-                            Text("收藏料理")
+                            Text("收藏料理") //收藏料理
                                 .font(.title3)
                                 .foregroundColor(.black)
                         }
-
-                        Text("料理作法")
+                        Text("料理作法") //料理作法
                             .font(.title2)
                             .foregroundColor(.black)
                             .padding(10)
@@ -39,9 +43,10 @@ struct FavoriteView: View {
     }
 }
 
-
-struct FavoriteView_Previews: PreviewProvider {
-    static var previews: some View {
+struct FavoriteView_Previews: PreviewProvider 
+{
+    static var previews: some View 
+    {
         ContentView()
     }
 }

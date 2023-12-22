@@ -10,7 +10,7 @@ import UIKit
 
 struct ImagePicker: UIViewControllerRepresentable 
 {
-    @Binding var selectedImages: [UIImage]  // 使用陣列來存儲多張照片
+    @Binding var selectedImages: [UIImage]  //使用陣列來存儲多張照片
     
     func makeUIViewController(context: Context) -> UIImagePickerController 
     {
@@ -36,10 +36,11 @@ struct ImagePicker: UIViewControllerRepresentable
             self.parent = parent
         }
         
-        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-            if let image = info[.originalImage] as? UIImage 
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any])
+        {
+            if let image = info[.originalImage] as? UIImage
             {
-                parent.selectedImages.append(image) // 將選擇的照片添加到陣列中
+                parent.selectedImages.append(image) //將選擇的照片添加到陣列中
             }
             picker.dismiss(animated: true)
         }

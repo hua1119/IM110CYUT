@@ -9,19 +9,15 @@ import SwiftUI
 
 struct ContentView: View 
 {
-    //存取登入狀態
-    @AppStorage("signin") private var signin: Bool=false
-    // 切換深淺模式
-    @State var isDarkMode: Bool = false
-    // TabView選擇的頁面
-    @State private var showSide: Bool = false
-    // 跟蹤標籤頁
-    @State private var select: Int = 0
+    @AppStorage("signin") private var signin: Bool=false //存取登入狀態
+    
+    @State var isDarkMode: Bool = false //切換深淺模式
+    @State private var showSide: Bool = false //TabView選擇的頁面
+    @State private var select: Int = 0 //跟蹤標籤頁
     @State private var information: Information = Information(name: "vc", gender: "女性", birthday:Date(), height: "161", weight: "50", BMI: 19.68, like1: "0",like2: "0",like3: "0",like4: "0")
 
     //    @StateObject private var cameraManagerViewModel = CameraManagerViewModel()
         
-    
     var body: some View 
     {
         NavigationStack 
@@ -47,7 +43,7 @@ struct ContentView: View
                     {
                         Label("計畫", systemImage: "calendar")
                     }
-                    //MARK: ForumView
+                    // MARK: ForumView
                     ShopView()
                         .tag(1)
                         .tabItem
@@ -77,8 +73,7 @@ struct ContentView: View
                         Label("設置", systemImage: "gearshape.fill")
                     }
                 }
-                // 點選後的顏色
-                .tint(.orange)
+                .tint(.orange) // 點選後的顏色
                 
             }
         }

@@ -1,3 +1,6 @@
+
+// MARK: BMIView
+
 import SwiftUI
 import Charts
 
@@ -278,13 +281,12 @@ struct BMIRecordsListView: View
         }
     }
     
-    // 刪除
-    private func deleteRecord(at offsets: IndexSet) 
+    // MARK: 刪除
+    private func deleteRecord(at offsets: IndexSet)
     {
         records.remove(atOffsets: offsets)
         
-        // 更新TemperatureSensor的records
-        if let sensorIndex = temperatureSensorViewModel.allSensors.firstIndex(where: { $0.id == "BMI" }) 
+        if let sensorIndex = temperatureSensorViewModel.allSensors.firstIndex(where: { $0.id == "BMI" }) // 更新TemperatureSensor的records
         {
             temperatureSensorViewModel.allSensors[sensorIndex].records = records
         }

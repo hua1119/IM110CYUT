@@ -38,7 +38,7 @@ struct DynamicView: View
     @State private var selectedRecord: DynamicRecordType = .BMI
     @State public var DynamicTitle:[String]=["BMI", "血壓" , "血糖", "血脂"]
     
-    // 创建一些示例传感器和记录
+    //創建一些示例傳感器和記錄
 //    let BMISensors: [TemperatureSensor<Double>] = [TemperatureSensor(sensorID: "BMI Sensor 1", records: [BMIRecord])]
 //    let BPSensors: [TemperatureSensor<Double>] = [TemperatureSensor(sensorID: "BP Sensor 1", records: [BPRecord])]
 //    let BSSensors: [TemperatureSensor<Double>] = [TemperatureSensor(sensorID: "BS Sensor 1", records: [BSRecord])]
@@ -87,7 +87,7 @@ struct DynamicView: View
     }
 
 }
-// Preview
+// MARK: Preview
 struct DynamicView_Previews: PreviewProvider 
 {
     static var previews: some View 

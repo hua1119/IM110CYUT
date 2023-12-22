@@ -10,7 +10,7 @@ import Firebase
 import FirebaseAuth
 import FirebaseCore
 
-//MARK: Firebase
+// MARK: Firebase
 //初始化啟動Firebase
 class AppDelegate: NSObject, UIApplicationDelegate 
 {
@@ -25,7 +25,7 @@ class AppDelegate: NSObject, UIApplicationDelegate
     }
 }
 
-//MARK: Main App
+// MARK: Main App
 @main
 struct IM110CYUTApp: App 
 {

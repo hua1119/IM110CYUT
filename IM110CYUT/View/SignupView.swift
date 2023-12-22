@@ -5,18 +5,15 @@ struct SignupView: View
     
     @Binding var textselect: Int
     
-    @Environment(\.dismiss) private var dismiss
-    
     @State private var information: (String, String, String, String, String, String, String, String,Double , Double ,Double ,Double)=("", "", "", "", "", "", "" , "" ,0.0,0.0,0.0,0.0)
-    
-    //執行結果Alert
-    @State private var result : (Bool,String)=(false,"")
-    //生日顯示
-    @State private var show: Bool=false
+    @State private var result : (Bool,String)=(false,"") //執行結果Alert
+    @State private var show: Bool=false //生日顯示
     @State private var description: String=""
     @State private var date: Date=Date()
-    
     @State private var selectedTab = 0
+    
+    @Environment(\.dismiss) private var dismiss
+    
     init(textselect: Binding<Int>)
     {
         self._textselect=textselect
@@ -24,11 +21,10 @@ struct SignupView: View
         UIPageControl.appearance().pageIndicatorTintColor = .gray
     }
     
-    //MARK: 註冊使用者
+    // MARK: 註冊使用者
     private func signup() async
     {
-        //輸入框有空 || 密碼不相同
-        if(self.information.0.isEmpty || self.information.1.isEmpty || self.information.1 != self.information.2)
+        if(self.information.0.isEmpty || self.information.1.isEmpty || self.information.1 != self.information.2) //輸入框有空 || 密碼不相同
         {
             self.result.1="1.請確保沒有空白字段。\n2. 請確保您的密碼相同。"
             self.result.0.toggle()
@@ -38,13 +34,12 @@ struct SignupView: View
             //Authentication
             Authentication().signup(account: self.information.0, password: self.information.1)
             {(_, error) in
-                //註冊失敗
-                if let error=error
+                if let error=error //註冊失敗
                 {
                     self.result.1=error.localizedDescription
                     self.result.0.toggle()
-                    //註冊成功
-                } else
+                    
+                } else //註冊成功
                 {
                     //Realtime Database
                     RealTime().signup(account: self.information.0, password: self.information.1, name: self.information.3,gender: self.information.4,birthday:self.information.5, height: String(self.information.6),weight: String(self.information.7), like1: String(self.information.8),like2: String(self.information.9),like3: String(self.information.10),like4: String(self.information.11))
@@ -56,7 +51,7 @@ struct SignupView: View
         }
     }
     
-    //InformationLabel記得要搬
+    // MARK: InformationLabel記得要搬
     private let label: [InformationLabel]=[
         InformationLabel(image: "person.text.rectangle", label: "帳號"),
         InformationLabel(image: "", label: ""),
@@ -72,7 +67,7 @@ struct SignupView: View
         InformationLabel(system: false, image: "spicy", label: "辣")
         
     ]
-    //MARK: 設定顯示資訊
+    // MARK: 設定顯示資訊
     private func setInformation(index: Int) -> String
     {
         switch(index)
@@ -106,7 +101,7 @@ struct SignupView: View
         }
     }
     
-    //MARK: 驗證密碼
+    // MARK: 驗證密碼
     private func passcheck() -> Bool
     {
         return !self.information.1.isEmpty && self.information.1==self.information.2
@@ -114,14 +109,16 @@ struct SignupView: View
     
     private func CurrenPageAcc() -> Bool
     {
-        if self.information.0.isEmpty || self.information.1.isEmpty || self.information.2.isEmpty {
-            
+        if self.information.0.isEmpty || self.information.1.isEmpty || self.information.2.isEmpty
+        {
             return false
-            
-        } else if !self.passcheck() {
-            
+        }
+        else if !self.passcheck()
+        {
             return false
-        } else {
+        }
+        else
+        {
             
             return true
         }
@@ -133,7 +130,7 @@ struct SignupView: View
         {
             NavigationStack
             {
-                //MARK: 輸入帳號密碼
+                // MARK: 輸入帳號密碼
                 VStack(spacing: 60)
                 {
                     VStack(spacing: 20)
@@ -184,7 +181,7 @@ struct SignupView: View
             }
             .tag(0)
             
-            //MARK: 輸入名稱
+            // MARK: 輸入名稱
             VStack(spacing: 60)
             {
                 VStack
@@ -192,7 +189,7 @@ struct SignupView: View
                     Text("請輸入您的名稱")
                         .font(.title2)
                         .foregroundColor(Color(red: 0.828, green: 0.249, blue: 0.115))
-                    //MARK: text: self.$account 改 連結
+                    // MARK: text: self.$account 改 連結
                     TextField("您的名稱", text: self.$information.3)
                         .padding()
                         .background(Color.gray.opacity(0.1))
@@ -220,7 +217,7 @@ struct SignupView: View
             .ignoresSafeArea(.keyboard)
             .tag(1)
             
-            //MARK: 選擇性別
+            // MARK: 選擇性別
             VStack(spacing: 20)
             {
                 Text("請選擇您的性別")
@@ -259,7 +256,7 @@ struct SignupView: View
             }
             .tag(2)
             
-            //MARK: 輸入生日
+            // MARK: 輸入生日
             VStack(spacing: 60)
             {
                 if(self.show)
@@ -316,14 +313,14 @@ struct SignupView: View
             }
             .tag(3)
             
-            //MARK: 輸入身高 體重
+            // MARK: 輸入身高 體重
             VStack(spacing: 60)
             {
                 Text("請輸入您的身高(CM)和體重(KG)")
                     .font(.title2)
                     .foregroundColor(Color(red: 0.828, green: 0.249, blue: 0.115))
                 
-                //身高
+                // MARK: 身高
                 VStack
                 {
                     
@@ -334,7 +331,7 @@ struct SignupView: View
                         .cornerRadius(100)
                 }
                 
-                //體重
+                // MARK: 體重
                 VStack
                 {
                     TextField("輸入您的體重", text: self.$information.7)
@@ -366,8 +363,7 @@ struct SignupView: View
             .tag(4)
             
             //MARK: 喜好調查
-            //酸
-            VStack(spacing: 60)
+            VStack(spacing: 60) //酸
             {
                 Text("請調整您的偏好")
                     .font(.title2)
@@ -403,8 +399,8 @@ struct SignupView: View
                 }
             }
             .tag(5)
-            //甜
-            VStack(spacing: 60)
+            
+            VStack(spacing: 60) //甜
             {
                 Text("請調整您的偏好")
                     .font(.title2)
@@ -440,8 +436,8 @@ struct SignupView: View
                 }
             }
             .tag(6)
-            //苦
-            VStack(spacing: 60)
+            
+            VStack(spacing: 60) //苦
             {
                 Text("請調整您的偏好")
                     .font(.title2)
@@ -477,8 +473,8 @@ struct SignupView: View
                 }
             }
             .tag(7)
-            //辣
-            VStack(spacing: 60)
+           
+            VStack(spacing: 60) //辣
             {
                 Text("請調整您的偏好")
                     .font(.title2)
@@ -514,7 +510,7 @@ struct SignupView: View
                 }
             }
             .tag(8)
-            //MARK: 所有資料
+            // MARK: 所有資料
             VStack
             {
                 Text("個人資訊")
@@ -526,7 +522,6 @@ struct SignupView: View
                     { index in
                         if(!(index==1 || index==2))
                         {
-                            
                             HStack
                             {
                                 if(index<self.label.count)
@@ -535,9 +530,7 @@ struct SignupView: View
                                 }
                                 Text(
                                     self.setInformation(index: index))
-                                
                             }
-                            
                         }
                     }
                 }
@@ -550,9 +543,7 @@ struct SignupView: View
                     {
                         Task
                         {
-                            //註冊
-                            await self.signup()
-                            
+                            await self.signup() //註冊
                         }
                     }
                 label:
@@ -568,15 +559,14 @@ struct SignupView: View
                 }
             }
             .tag(9)
-            
-            
         }
         .tabViewStyle(.page(indexDisplayMode: self.selectedTab<9 ? .always:.never))
         .animation(.smooth, value: self.selectedTab)
-        .onTapGesture {
+        .onTapGesture 
+        {
             self.dismissKeyboard()
         }
-        //MARK: 結果Alert
+        // MARK: 結果Alert
         .alert(self.result.1, isPresented: self.$result.0)
         {
             Button("確認")

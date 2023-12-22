@@ -9,7 +9,7 @@ import SwiftUI
 
 extension View
 {
-    //紀錄用戶身體健康指標標籤
+    // MARK: 紀錄用戶身體健康指標標籤
     func _Tag1Button(image: String, title: String, fore: Color, back: Color) -> some View
     {
         HStack
@@ -28,15 +28,14 @@ extension View
         }
     }
 
-    //用戶成就標籤
+    // MARK: 用戶成就標籤
     func _Tag2Button(image: String, title: String, fore: Color, back: Color) -> some View
     {
         HStack(spacing: 10)
         {
-            //系統圖標
-            Image(systemName: image)
-                //字體大小
-                .font(.title3)
+           
+            Image(systemName: image) //系統圖標
+                .font(.title3) //字體大小
                 .foregroundColor(fore)
 
             Text("(title)成就")

@@ -6,11 +6,6 @@
 //
 
 // MARK: 立即煮介面
-//  ForumView.swift
-//
-//
-//
-//
 import SwiftUI
 import UIKit
 
@@ -22,8 +17,7 @@ struct NowView: View
         {
             ZStack
             {
-                // 包住加號和發佈貼文
-                VStack
+                VStack // 包住加號和發佈貼文
                 {
                     Text("立即煮")
                         .font(.largeTitle)
@@ -56,8 +50,8 @@ struct NowView: View
         }
     }
 }
-// MARK: 文章發布後格式
 
+// MARK: 文章發布後格式
 struct RoundedRectangleBlock: View
 {
     let imageName: String
@@ -82,7 +76,6 @@ struct RoundedRectangleBlock: View
                         .frame(width: 330, height: 170)
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         .offset(y: -18)
-                    
                     Text(title)
                         .foregroundColor(Color.black)
                         .padding(.horizontal, 10)

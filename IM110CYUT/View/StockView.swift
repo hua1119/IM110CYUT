@@ -16,18 +16,21 @@ struct StockIngredient: Identifiable
     var isSelectedForDeletion: Bool = false
 }
 
-// MARK: 新增食材
+// MARK: 新增採購食材
 struct AddIngredients: View
 {
     @State private var newIngredientName: String = ""
     @State private var newIngredientQuantity: String = ""
+    
     var onAdd: (StockIngredient) -> Void
+    
     @Binding var isSheetPresented: Bool
     
     var body: some View
     {
         NavigationStack
         {
+            // MARK: 採購食材的清單
             Form
             {
                 Section(header: Text("新增食材內容"))
@@ -38,6 +41,7 @@ struct AddIngredients: View
                 }
             }
             .navigationTitle("新增食材")
+            // MARK: 開啟新增食材後的新增
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing)
                 {
@@ -84,7 +88,7 @@ struct StockView: View
                     { index in
                         HStack
                         {
-                            // 編輯功能
+                            // MARK: 編輯功能
                             if isEditing
                             {
                                 Button(action:
@@ -93,14 +97,14 @@ struct StockView: View
                                 }) {
                                     Image(systemName: ingredients[index].isSelectedForDeletion ? "checkmark.square" : "square")
                                 }
-                                .buttonStyle(BorderlessButtonStyle()) // 非編輯模式下點擊按鈕不觸發滑動刪除
+                                .buttonStyle(BorderlessButtonStyle()) //非編輯模式下點擊按鈕不觸發滑動刪除
                             }
                             
                             Text("\(ingredients[index].name): \(ingredients[index].quantity)")
                                 .foregroundColor(ingredients[index].isSelectedForDeletion ? .gray : .primary)
                             
                             Spacer()
-                            
+                            // MARK: 開啟編輯後的文字框
                             if isEditing
                             {
                                 TextField("數量", value: $ingredients[index].quantity, formatter: NumberFormatter())
@@ -112,9 +116,9 @@ struct StockView: View
                 }
                 .padding()
                 
-                // Move the buttons outside the List
                 HStack
                 {
+                    // MARK: 新增食材鍵
                     if isEditing
                     {
                         Button("新增食材")
@@ -134,12 +138,14 @@ struct StockView: View
                     }, isSheetPresented: $isAddSheetPresented)
                 }
             }
+            // MARK: 右上角編輯鍵
             .toolbar
             {
                 ToolbarItem(placement: .navigationBarTrailing)
                 {
                     HStack
                     {
+                        // MARK: 開啟編輯鍵
                         if !isEditing
                         {
                             Button("編輯")
@@ -147,6 +153,7 @@ struct StockView: View
                                 isEditing.toggle()
                             }
                         } else {
+                            // MARK: 編輯後顯示刪除或保存
                             Button(action:
                                     {
                                 // Check if any item is selected for deletion
@@ -160,7 +167,7 @@ struct StockView: View
                                     isEditing.toggle()
                                 }
                             }) {
-                                Text(ingredients.contains { $0.isSelectedForDeletion } ? "刪除" : "取消")
+                                Text(ingredients.contains { $0.isSelectedForDeletion } ? "刪除" : "保存")
                             }
                             .padding()
                         }
@@ -170,12 +177,12 @@ struct StockView: View
         }
     }
     
-    // MARK: 編輯方法
+    // MARK: 編輯採購清單方法
     private func toggleSelection(_ index: Int)
     {
         ingredients[index].isSelectedForDeletion.toggle()
     }
-    // MARK: 刪除方法
+    // MARK: 刪除採購清單方法
     private func deleteSelectedIngredients()
     {
         // Filter out the selected indices and convert them to IndexSet

@@ -22,7 +22,7 @@ struct StoRage
         self.reference=self.storage.reference(forURL: "gs://gp110im.appspot.com//")
     }
     
-    //MARK: 下載圖片
+    // MARK: 下載圖片
     func downloadPicture(path: String, name: String, completion: @escaping (Data?, Error?) -> Void)
     {
         //指定路徑(資料夾) 指定名稱(檔案)
@@ -40,13 +40,13 @@ struct StoRage
             }
         }
     }
-    //MARK: 上傳圖片
+    
+    // MARK: 上傳圖片
     func uploadPicture(path: String, name: String, image: UIImage)
     {
-        //指定路徑(資料夾) 指定名稱(檔案)
-        let child: StorageReference=self.reference.child(path).child(name)
-        //將UIImage轉換成JPEG
-        if let data=image.jpegData(compressionQuality: 1) 
+        let child: StorageReference=self.reference.child(path).child(name) //指定路徑(資料夾) 指定名稱(檔案)
+        // MARK: 將UIImage轉換成JPEG
+        if let data=image.jpegData(compressionQuality: 1)
         {
             //將圖片存進child節點
             child.putData(data, metadata: nil) {(_, error) in

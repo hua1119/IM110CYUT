@@ -16,15 +16,14 @@ struct MyView: View
     
     @Binding var select: Int
     
-    
-    @State private var realTime: RealTime = RealTime() // 创建 RealTime 对象
+    @State private var realTime: RealTime = RealTime() //創建 RealTime 對象
     @State private var pickImage: PhotosPickerItem?
     @State var isDarkMode: Bool = false
     @State private var isNameSheetPresented = false //更新名字完後會自動關掉ＳＨＥＥＴ
     
     @Environment(\.presentationMode) private var presentationMode
-    //提供所有View使用的User結構
-    @EnvironmentObject private var user: User
+    @EnvironmentObject private var user: User //提供所有View使用的User結構
+    
     private let label: [InformationLabel]=[
         InformationLabel(image: "person.fill", label: "名稱"),
         InformationLabel(image: "figure.arms.open", label: "性別"),
@@ -99,7 +98,8 @@ struct MyView: View
                                     }
                                 }
                             }
-                        }else{
+                        }else
+                        {
                             PhotosPicker(selection: self.$pickImage, matching: .any(of: [.images, .livePhotos]))
                             {
                                 Circle()
@@ -153,7 +153,7 @@ struct MyView: View
                     {
                         Section(header:Text("個人資訊"))
                         {
-                            //MARK: 用戶名稱
+                            // MARK: 用戶名稱
                             HStack
                             {
                                 VStack
@@ -165,26 +165,23 @@ struct MyView: View
                                         HStack
                                         {
                                             InformationLabel(image: "person.fill", label: "姓名")
-                                            Text(self.user.name) // 传递0或1作为参数，根据需要的索引
+                                            Text(self.user.name) //傳遞0或1作為參數，根據需要的索引
                                                 .foregroundColor(.gray)
                                             
                                         }
                                     }
-                                    .buttonStyle(PlainButtonStyle()) // 可选：将按钮样式设置为普通按钮
-                                    .cornerRadius(8) // 可选：添加圆角
+                                    .buttonStyle(PlainButtonStyle()) //可選：將按鈕樣式這是為普通按鈕
+                                    .cornerRadius(8) //可選：添加圓角
                                 }
                                 .sheet(isPresented: $isNameSheetPresented) {
                                     NameSheetView(name: $user.name, isPresented: $isNameSheetPresented, realTime: realTime)
                                 }
-
-                                
-                                
                                 //                            NavigationLink(destination: MenuView())
                                 //                            {
                                 //                                InformationLabel(image: "person.fill", label: "用戶名稱")
                                 //                            }
                             }
-                            //MARK: 性別/生日
+                            // MARK: 性別/生日
                             ForEach(1..<3, id: \.self)
                             {
                                 index in
@@ -198,38 +195,38 @@ struct MyView: View
                         }
                         .listRowSeparator(.hidden)
                         
-                        //MARK: 設定_內容
+                        // MARK: 設定_內容
                         Section(header:Text("設置"))
                         {
-                            //MARK: 過往食譜
+                            // MARK: 過往食譜
                             HStack
                             {
                                 NavigationLink(destination: MenuView()) {
                                     InformationLabel(image: "clock.arrow.circlepath", label: "過往食譜")
                                 }
                             }
-                            //MARK: 食材紀錄
+                            // MARK: 食材紀錄
                             HStack
                             {
                                 NavigationLink(destination: StockView()) {
                                     InformationLabel(image: "doc.on.clipboard", label: "檢視庫存")
                                 }
                             }
-                            //MARK: 飲食偏好
+                            // MARK: 飲食偏好
                             HStack
                             {
                                 NavigationLink(destination: MenuView()) {
                                     InformationLabel(image: "fork.knife", label: "飲食偏好")
                                 }
                             }
-                            //MARK: 我的最愛
+                            // MARK: 我的最愛
                             HStack
                             {
                                 NavigationLink(destination: FavoriteView()) {
                                     InformationLabel(image: "heart.fill", label: "我的最愛")
                                 }
                             }
-                            //MARK: 深淺模式
+                            // MARK: 深淺模式
                             HStack
                             {
                                 HStack
@@ -250,7 +247,7 @@ struct MyView: View
                                     .scaleEffect(0.75)
                                     .offset(x: 30)
                             }
-                            //MARK: 登出
+                            // MARK: 登出
                             Button(action:
                                     {
                                 withAnimation(.easeInOut)
@@ -279,25 +276,22 @@ struct MyView: View
                         .listRowSeparator(.hidden)
                     }
                     .listStyle(.plain)
-                    .background(.clear)
-                    //設定背景為白色，不要是灰色
                     .listStyle(InsetListStyle())
-                    //控制深淺模式切換
-                    .preferredColorScheme(self.colorScheme ? .light:.dark)
+                    .preferredColorScheme(self.colorScheme ? .light:.dark) //控制深淺模式切換
                     .onChange(of: self.colorScheme)
                     {
                         newValue in
                         self.isDarkMode = !self.colorScheme
                     }
                     .onAppear {
-                        // 从 RealTime 获取用户信息
-                        realTime.getUser(account: "用户的账号") { userInfo, error in
+                        // MARK: 從 RealTime 獲取用戶信息
+                        realTime.getUser(account: "用户的帳號") { userInfo, error in
                             if let userInfo = userInfo {
-                                // 更新 MyView 中的用户信息
+                                //更新 MyView 中的用戶信息
                                 self.user.name = userInfo[3]
                                 self.user.gender=userInfo[4]
-                                self.user.birthday=userInfo[5]// 请根据实际情况修改索引
-                                // 更新其他用户信息，根据需要
+                                self.user.birthday=userInfo[5] //請根據實際情況修改索引
+                                // MARK: 更新其他用戶信息，根據需要
                             } else if let error = error {
                                 print("Error getting user information: \(error.localizedDescription)")
                             }
@@ -309,25 +303,34 @@ struct MyView: View
     }
 }
 
-struct NameSheetView: View {
+struct NameSheetView: View 
+{
     @Binding var name: String
     @Binding var isPresented: Bool
+    
     @State private var newName = ""
-    var realTime: RealTime // 添加 RealTime 属性
+    
+    var realTime: RealTime //添加 RealTime 屬性
 
-    var body: some View {
-        NavigationStack {
-            Form {
-                Section(header: Text("更改姓名")) {
+    var body: some View 
+    {
+        NavigationStack 
+        {
+            Form 
+            {
+                Section(header: Text("更改姓名")) 
+                {
                     TextField("新的姓名", text: $newName)
                 }
             }
             .navigationBarItems(
-                leading: Button("取消") {
+                leading: Button("取消") 
+                {
                     isPresented = false
                 },
-                trailing: Button("保存") {
-                    // 保存新的姓名到 RealTime，并删除旧信息
+                trailing: Button("保存") 
+                {
+                    //保存新的姓名到 RealTime，並刪除舊信息
                     realTime.updateUserNameAndDelete(id:"", name: newName)
                     {
                         self.name=self.newName
@@ -337,8 +340,6 @@ struct NameSheetView: View {
         }
     }
 }
-
-
 
 //struct NameSheetView: View
 //{

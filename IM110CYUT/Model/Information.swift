@@ -5,6 +5,7 @@
 //  Created by Mac on 2023/8/23.
 //
 
+// MARK: 註冊的資料
 import Foundation
 
 struct Information

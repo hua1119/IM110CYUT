@@ -9,7 +9,7 @@
 import SwiftUI
 import Charts
 
-//血脂紀錄
+// MARK: 血脂紀錄
 struct HyperlipidemiaRecord: Identifiable
 {
     var id = UUID()
@@ -23,14 +23,14 @@ struct HyperlipidemiaRecord: Identifiable
     }
 }
 
-//包含ID和高血脂相關紀錄數組
+// MARK: 包含ID和高血脂相關紀錄數組
 struct HyperlipidemiaTemperatureSensor: Identifiable
 {
     var id: String
     var records: [HyperlipidemiaRecord]
 }
 
-//存取TemperatureSensor數據
+// MARK: 存取TemperatureSensor數據
 var HyperlipidemiaallSensors: [HyperlipidemiaTemperatureSensor] = [
     .init(id: "血脂值", records: [])
 ]
@@ -46,10 +46,10 @@ private func formattedDate(_ date: Date) -> String
 struct HyperlipidemiaView: View
 {
     let upperLimit: Double = 500.0
+    
     @State private var hyperlipidemia: String = ""
     @State private var chartData: [HyperlipidemiaRecord] = []
-    //列表控制
-    @State private var isShowingList: Bool = false
+    @State private var isShowingList: Bool = false //列表控制
     @State private var scrollToBottom: Bool = false
     @State private var showAlert: Bool = false//
     
@@ -86,8 +86,7 @@ struct HyperlipidemiaView: View
                             Chart(HyperlipidemiaallSensors)
                             {
                                 sensor in
-                                //動態顯示用戶輸入的數據
-                                ForEach(chartData)
+                                ForEach(chartData) //動態顯示用戶輸入的數據
                                 {
                                     record in
                                     LineMark(
@@ -119,15 +118,12 @@ struct HyperlipidemiaView: View
                     .padding()
                 VStack
                 {
-                    //血脂值輸入
-                    Text("血脂值輸入")
+                    Text("血脂值輸入") //血脂值輸入
                         .font(.system(size: 20, weight: .semibold))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.leading, 20)
                         .foregroundColor(Color("textcolor"))
-                    
-                    //使用者輸入
-                    VStack(spacing: -5)
+                    VStack(spacing: -5) //使用者輸入
                     {
                         TextField("請輸入血脂值", text: $hyperlipidemia)
                             .padding()
@@ -135,35 +131,27 @@ struct HyperlipidemiaView: View
                             .keyboardType(.numberPad)
                             .frame(width: 330)
                             .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillChangeFrameNotification))
-                        {
-                            _ in
-                        }
+                        {_ in}
                         .onChange(of: hyperlipidemia)
-                        {
-                            newValue in
+                        { newValue in
                             if let newValue = Double(newValue), newValue > upperLimit
                             {
-                                //當輸入的值超過上限時，會顯示警告
-                                showAlert = true
-                                //將輸入值截斷為上限值
-                                hyperlipidemia = String(upperLimit)
+                                showAlert = true //當輸入的值超過上限時，會顯示警告
+                                hyperlipidemia = String(upperLimit) //將輸入值截斷為上限值
                             }
                         }
-                        
                         Button(action:
                                 {
                             if let hyperlipidemiaValue = Double(hyperlipidemia)
                             {
-                                //檢查是否已經有當天的紀錄存在
-                                if let index = chartData.firstIndex(where:
-                                                                        { Calendar.current.isDate($0.date, inSameDayAs: Date()) }) {
-                                    //如果有，則更新當天的值
-                                    chartData[index].hyperlipidemia = hyperlipidemiaValue
+                                if let index = chartData.firstIndex(where:{ Calendar.current.isDate($0.date, inSameDayAs: Date()) }) //檢查是否已經有當天的紀錄存在
+                                {
+                                    chartData[index].hyperlipidemia = hyperlipidemiaValue //如果有，則更新當天的值
+
                                 }
                                 else
                                 {
-                                    //否則新增一條紀錄
-                                    let newRecord = HyperlipidemiaRecord(hyperlipidemia: hyperlipidemiaValue)
+                                    let newRecord = HyperlipidemiaRecord(hyperlipidemia: hyperlipidemiaValue) //否則新增一條紀錄
                                     chartData.append(newRecord)
                                 }
                                 
@@ -191,8 +179,7 @@ struct HyperlipidemiaView: View
             {
                 HyperlipidemiaRecordsListView(records: $chartData)
             }
-            //超過上限警告
-            .alert(isPresented: $showAlert) 
+            .alert(isPresented: $showAlert) //超過上限警告
             {
                 Alert(
                     title: Text("警告"),
@@ -205,7 +192,7 @@ struct HyperlipidemiaView: View
     }
 }
 
-//列表記錄
+// MARK: 列表記錄
 struct HyperlipidemiaRecordsListView: View
 {
     @Binding var records: [HyperlipidemiaRecord]
@@ -242,13 +229,15 @@ struct HyperlipidemiaRecordsListView: View
     }
 }
 
-//編輯血脂紀錄視圖
+// MARK: 編輯血脂紀錄視圖
 struct EditHyperlipidemiaRecordView: View
 {
     @Binding var record: HyperlipidemiaRecord
+    
     @State private var editedHyperlipidemia: String = ""
     @State private var originalHypertension: Double = 0.0
     @State private var showAlert: Bool = false
+    
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View
@@ -268,13 +257,13 @@ struct EditHyperlipidemiaRecordView: View
             {
                 if let editedValue = Double(editedHyperlipidemia)
                 {
-                    //檢查是否超過上限
-                    if editedValue <= 500
+                    if editedValue <= 500 //檢查是否超過上限
+
                     {
                         record.hyperlipidemia = editedValue
                         presentationMode.wrappedValue.dismiss()
-                    } else {
-                        //超過上限時顯示警告
+                    } else //超過上限時顯示警告
+                    {
                         showAlert = true
                     }
                 }
@@ -282,8 +271,7 @@ struct EditHyperlipidemiaRecordView: View
             .padding()
         }
         .navigationTitle("編輯血脂值")
-        //超過上限時顯示警告
-        .alert(isPresented: $showAlert)
+        .alert(isPresented: $showAlert) //超過上限時顯示警告
         {
             Alert(
                 title: Text("警告"),

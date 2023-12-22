@@ -1,12 +1,11 @@
 //血壓（Blood Pressure）的英文縮寫是 BP
 
 
-//高血壓
+// MARK: 高血壓
 import SwiftUI
 import Charts
 
-// 血壓紀錄
-struct HypertensionRecord: Identifiable
+struct HypertensionRecord: Identifiable //血壓紀錄
 {
     var id = UUID()
     var hypertension: Double
@@ -19,15 +18,14 @@ struct HypertensionRecord: Identifiable
     }
 }
 
-// 包含ID和高血壓相關紀錄數組
-struct HypertensionTemperatureSensor: Identifiable
+struct HypertensionTemperatureSensor: Identifiable //包含ID和高血壓相關紀錄數組
 {
     var id: String
     var records: [HypertensionRecord]
 }
 
-// 存取TemperatureSensor數據
-var HypertensionallSensors: [HypertensionTemperatureSensor] = [
+var HypertensionallSensors: [HypertensionTemperatureSensor] = //存取TemperatureSensor數據
+[
     .init(id: "血壓值", records: [])
 ]
 
@@ -41,7 +39,8 @@ private func formattedDate(_ date: Date) -> String
 
 struct HypertensionView: View
 {
-    let upperLimit: Double = 400.0//輸入最大值
+    let upperLimit: Double = 400.0 //輸入最大值
+    
     @State private var hypertension: String = ""
     @State private var chartData: [HypertensionRecord] = []
     @State private var isShowingList: Bool = false
@@ -50,7 +49,7 @@ struct HypertensionView: View
     
     var body: some View
     {
-        NavigationView
+        NavigationStack
         {
             VStack
             {
@@ -106,15 +105,12 @@ struct HypertensionView: View
                             .symbol(by: .value("Sensor Location", sensor.id))
                             .symbolSize(100)
                         }
-                        .chartForegroundStyleScale([
-                            "血壓值": .orange
-                        ])
+                        .chartForegroundStyleScale(["血壓值": .orange])
                         .frame(width: 350, height: 200)
                         
                     }
                 }
                 .padding()
-                
                 
                 VStack
                 {
@@ -139,10 +135,8 @@ struct HypertensionView: View
                             newValue in
                             if let newValue = Double(newValue), newValue > upperLimit
                             {
-                                //當輸入的值超過上限時，會顯示警告
-                                showAlert = true
-                                //將輸入值截斷為上限值
-                                hypertension = String(upperLimit)
+                                showAlert = true //當輸入的值超過上限時，會顯示警告
+                                hypertension = String(upperLimit) //將輸入值截斷為上限值
                             }
                         }
                         
@@ -185,7 +179,7 @@ struct HypertensionView: View
             {
                 HypertensionRecordsListView(records: $chartData)
             }
-            //超過上限警告
+            // MARK: 超過上限警告
             .alert(isPresented: $showAlert)
             {
                 Alert(
@@ -205,7 +199,7 @@ struct HypertensionRecordsListView: View
     
     var body: some View
     {
-        NavigationView
+        NavigationStack
         {
             List
             {
@@ -229,14 +223,14 @@ struct HypertensionRecordsListView: View
             }
         }
     }
-    //列表刪除功能_歷史紀錄刪除
+    // MARK: 列表刪除功能_歷史紀錄刪除
     private func deleteRecord(at offsets: IndexSet)
     {
         records.remove(atOffsets: offsets)
     }
 }
 
-//編輯
+// MARK: 編輯
 struct EditHypertensionRecordView: View
 {
     @Binding var record: HypertensionRecord
@@ -270,16 +264,14 @@ struct EditHypertensionRecordView: View
                     }
                     else
                     {
-                        //用戶修改的值超過400，顯示警告
-                        showAlert = true
+                        showAlert = true //用戶修改的值超過400，顯示警告
                     }
                 }
             }
             .padding()
         }
         .navigationTitle("編輯血壓值")
-        //超過上限警告
-        .alert(isPresented: $showAlert)
+        .alert(isPresented: $showAlert) //超過上限警告
         {
             Alert(
                 title: Text("警告"),

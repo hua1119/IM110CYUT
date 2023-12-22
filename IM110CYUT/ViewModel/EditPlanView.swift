@@ -11,16 +11,20 @@ import SwiftUI
 
 struct EditPlanView: View
 {
-    @State private var show1: [Bool] = [false, false, false, false, false, false, false]
+    
     var day: String
     var planIndex: Int
-    @Binding var plans: [String: [String]]
+   
+    @State private var show1: [Bool] = [false, false, false, false, false, false, false]
     @State private var searchText: String = ""
     @State private var editedPlan = ""
-    @Environment(\.presentationMode) var presentationMode
     @State private var isShowingDetail = false
     
-    //懶人選項
+    @Binding var plans: [String: [String]]
+    
+    @Environment(\.presentationMode) var presentationMode
+
+    // MARK: 懶人選項
     let foodOptions1: [FoodOption] = [
         FoodOption(name: "泡麵", backgroundImage: "泡麵"),
         FoodOption(name: "蔥油餅", backgroundImage: "蔥油餅"),
@@ -28,7 +32,7 @@ struct EditPlanView: View
         FoodOption(name: "番茄炒蛋", backgroundImage: "番茄炒蛋")
         // 添加更多食物選項及其相應的背景圖片
     ]
-    //減肥選項
+    // MARK: 減肥選項
     let foodOptions2: [FoodOption] = [
         FoodOption(name: "青江菜", backgroundImage: "青江菜"),
         FoodOption(name: "炒蛋", backgroundImage: "炒蛋"),
@@ -36,7 +40,7 @@ struct EditPlanView: View
         FoodOption(name: "花椰菜", backgroundImage: "花椰菜")
         // 添加更多食物選項及其相應的背景圖片
     ]
-    //省錢選項
+    // MARK: 省錢選項
     let foodOptions3: [FoodOption] = [
         FoodOption(name: "白菜滷", backgroundImage: "白菜滷"),
         FoodOption(name: "炒菠菜", backgroundImage: "炒菠菜"),
@@ -44,7 +48,7 @@ struct EditPlanView: View
         FoodOption(name: "炒高麗菜", backgroundImage: "炒高麗菜")
         // 添加更多食物選項及其相應的背景圖片
     ]
-    //放縱選項
+    // MARK: 放縱選項
     let foodOptions4: [FoodOption] = [
         FoodOption(name: "炸鮮蚵", backgroundImage: "炸鮮蚵"),
         FoodOption(name: "脆皮烤鴨", backgroundImage: "脆皮烤鴨"),
@@ -52,7 +56,7 @@ struct EditPlanView: View
         FoodOption(name: "炸薯條", backgroundImage: "炸薯條")
         // 添加更多食物選項及其相應的背景圖片
     ]
-    //養生選項
+    // MARK: 養生選項
     let foodOptions5: [FoodOption] = [
         FoodOption(name: "四神湯", backgroundImage: "四神湯"),
         FoodOption(name: "蔬果汁", backgroundImage: "蔬果汁"),
@@ -60,7 +64,7 @@ struct EditPlanView: View
         FoodOption(name: "香菇瘦肉養生粥", backgroundImage: "香菇瘦肉養生粥")
         // 添加更多食物選項及其相應的背景圖片
     ]
-    //今日推薦選項
+    // MARK: 今日推薦選項
     let foodOptions6: [FoodOption] = [
         FoodOption(name: "牛肉湯", backgroundImage: "牛肉湯"),
         FoodOption(name: "山藥排骨湯", backgroundImage: "山藥排骨湯"),
@@ -72,12 +76,14 @@ struct EditPlanView: View
 
     @State private var isShowingDetail7 = false
 
-    // 聽天由命選項的View
+    // MARK: 聽天由命選項的View
     private var fateButton: some View {
-        CustomButton(imageName: "聽天由命", buttonText: "聽天由命") {
+        CustomButton(imageName: "聽天由命", buttonText: "聽天由命") 
+        {
             isShowingDetail7.toggle()
         }
-        .sheet(isPresented: $isShowingDetail7) {
+        .sheet(isPresented: $isShowingDetail7) 
+        {
             VStack {
                 Spacer()
                 SpinnerView()
@@ -88,8 +94,6 @@ struct EditPlanView: View
         }
   
     }
-
-
 
     @ViewBuilder
     private func TempView(imageName: String, buttonText: String, isShowingDetail: Binding<Bool>, foodOptions: [FoodOption]) -> some View {

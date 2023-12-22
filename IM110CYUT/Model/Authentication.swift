@@ -2,7 +2,7 @@
 //  Authentication.swift
 //
 //
-//  
+//
 //
 
 import Foundation
@@ -11,8 +11,7 @@ import FirebaseAuth
 //Firebase Authentication
 struct Authentication
 {
-    //Authentication環境
-    private let authentication: Auth
+    private let authentication: Auth //Authentication環境
     
     //MARK: 初始化
     init()
@@ -21,46 +20,39 @@ struct Authentication
     }
     
     //MARK: 刪除
-    //刪除當前使用者在Authentication的資料
-    func delete() 
+    func delete() //刪除當前使用者在Authentication的資料
     {
-        //確認當前使用者有登入
-        if let user=self.authentication.currentUser
+        if let user=self.authentication.currentUser //確認當前使用者有登入
         {
-            //刪除
-            user.delete()
+            user.delete() //刪除
         }
     }
+    
     //MARK: 登入
-    //當前使用者登入
-    func signin(account: String, password: String, completion: @escaping (Bool, Error?) -> Void)
+    func signin(account: String, password: String, completion: @escaping (Bool, Error?) -> Void) //當前使用者登入
     {
-        //登入
-        self.authentication.signIn(withEmail: account, password: password) {(_, error) in
+        self.authentication.signIn(withEmail: account, password: password) //登入
+        { (_, error) in
             if let error=error
             {
-                //登入失敗 -> (失敗, 錯誤資訊)
-                completion(false, error)
-            } else
-            {
-                //登入成功 -> (成功, 空值)
-                completion(true, nil)
+                completion(false, error) //登入失敗 -> (失敗, 錯誤資訊)
+            } else {
+                completion(true, nil) //登入成功 -> (成功, 空值)
             }
         }
     }
+    
     //MARK: 註冊
     func signup(account: String, password: String, completion: @escaping (Bool, Error?) -> Void)
     {
-        //註冊
-        self.authentication.createUser(withEmail: account, password: password) {(_, error) in
+        self.authentication.createUser(withEmail: account, password: password) //註冊
+        {(_, error) in
             if let error=error
             {
-                //註冊失敗 -> (失敗, 錯誤資訊)
-                completion(false, error)
-            } else
-            {
-                //註冊失敗 -> (成功, 空值)
-                completion(true, nil)
+                completion(false, error) //註冊失敗 -> (失敗, 錯誤資訊)
+            } else {
+                completion(true, nil) //註冊失敗 -> (成功, 空值)
+
             }
         }
     }
