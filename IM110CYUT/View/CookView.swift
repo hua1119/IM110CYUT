@@ -38,7 +38,7 @@ struct CookView: View
                 HStack
                 {
                     Spacer()
-                    NavigationLink(destination: AdjustView())
+                    NavigationLink(destination: AdjustedView())
                     {
                         Text("調整計畫")
 //                            .padding()

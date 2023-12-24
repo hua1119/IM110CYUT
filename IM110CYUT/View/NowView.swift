@@ -93,6 +93,6 @@ struct NowView_Previews: PreviewProvider
 {
     static var previews: some View
     {
-        ContentView()
+        NowView()
     }
 }
