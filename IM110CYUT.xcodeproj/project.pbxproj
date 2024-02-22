@@ -70,6 +70,7 @@
 
 /* Begin PBXFileReference section */
 		0422F6F52B134DC9001109F8 /* AdjustedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjustedView.swift; sourceTree = "<group>"; };
+		0432CB102B86FAD600460DA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		048D11A72B10745800F57403 /* PlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanView.swift; sourceTree = "<group>"; };
 		048D11A92B10748D00F57403 /* ShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopView.swift; sourceTree = "<group>"; };
 		04962B182B1C640800B51969 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
@@ -162,6 +163,7 @@
 		04C3D8CA2B1057ED001C28D9 /* IM110CYUT */ = {
 			isa = PBXGroup;
 			children = (
+				0432CB102B86FAD600460DA9 /* Info.plist */,
 				04C3D8CB2B1057ED001C28D9 /* IM110CYUTApp.swift */,
 				04C3D8CD2B1057ED001C28D9 /* CcontentView.swift */,
 				04C3D8CF2B1057EE001C28D9 /* Assets.xcassets */,
@@ -539,6 +541,7 @@
 				DEVELOPMENT_TEAM = 5368N29Z5Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = IM110CYUT/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -568,6 +571,7 @@
 				DEVELOPMENT_TEAM = WPR9PZZJ8R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = IM110CYUT/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
